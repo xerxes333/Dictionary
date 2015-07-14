@@ -12,5 +12,5 @@ The minimum requirement by this project template that your Web server supports P
 INSTALLATION
 ------------
 
-### Clone from Github repo
+Clone from Github repo
 
