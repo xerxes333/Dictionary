@@ -12,4 +12,4 @@ The minimum requirement by this project template that your Web server supports P
 INSTALLATION
 ------------
 
-Clone from Github repo  then run composer install in the project root dir
+Clone from Github repo  then run `composer install` in the project root dir
