@@ -13,4 +13,4 @@ INSTALLATION
 ------------
 
 Clone from Github repo
-
+Then run composer install in the project root dir
