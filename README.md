@@ -13,3 +13,7 @@ INSTALLATION
 ------------
 
 Clone from Github repo  then run `composer install` in the project root dir
+  - Clone this repo to your local dev directory
+  - run `$ composer install` command in the project root dir
+  - configure the your development webserver
+  - enable mod_rewrite
