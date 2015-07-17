@@ -52,8 +52,20 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        $arr = [
+            'facebook'      => 'https://facebook.com/xerxes333',
+            'twitter'       => 'https://twitter.com/xerxes333',
+            'instagram'     => 'https://instagram.com/xerxes333',
+            'pinterest'     => 'https://pinterest.com/jdraxler',
+            'stackoverflow' => 'http://stackoverflow.com/users/1332233/xerxes333',
+            'github'        => 'https://github.com/xerxes333',
+            'bitbucket'     => 'https://bitbucket.com/xerxes333',
+            'linkedin'      => 'https://www.linkedin.com/pub/jeremy-draxler/11/b76/309',
+        ];
+        
+        
         return $this->render('index',[
-            'foo'    => 'bar'
+            'social' => $arr,
         ]);
     }
     
