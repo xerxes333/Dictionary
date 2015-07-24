@@ -10,7 +10,12 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\DictionaryForm;
+use app\models\Dictionary;
+use app\models\WiwShift;
+use app\models\WiwUser;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+use GuzzleHttp\Client;
 
 class SiteController extends Controller
 {
@@ -57,13 +62,80 @@ class SiteController extends Controller
             'twitter'       => 'https://twitter.com/xerxes333',
             'instagram'     => 'https://instagram.com/xerxes333',
             'pinterest'     => 'https://pinterest.com/jdraxler',
-            'stackoverflow' => 'http://stackoverflow.com/users/1332233/xerxes333',
+            'stackoverflow' => 'https://stackoverflow.com/users/1332233/xerxes333',
             'github'        => 'https://github.com/xerxes333',
             'bitbucket'     => 'https://bitbucket.com/xerxes333',
             'linkedin'      => 'https://www.linkedin.com/pub/jeremy-draxler/11/b76/309',
         ];
         
         
+        
+        $client = new Client([
+            'base_uri' => 'http://dictionary.dev/',
+            'headers' => [
+                'Accept'     => 'application/json',
+            ]
+        ]);
+        $response = $client->get('dictionary');
+        $body = json_decode($response->getBody());
+        
+        $d = Dictionary::find()->all();
+        
+        // echo str_repeat("<br>",3);
+        // var_dump($body);
+        
+        /**
+         * The API must follow REST specification:
+
+    POST should be used to create
+    GET should be used to read
+    PUT should be used to update (and optionally to create)
+    DELETE should be used to delete
+  
+ 
+
+GET As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me.
+GET As an employee, I want to know who I am working with, by being able see the employees that are working during the same time period as me.
+GET As an employee, I want to know how much I worked, by being able to get a summary of hours worked for each week.
+GET As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
+
+POST/PUT As a manager, I want to schedule my employees, by creating shifts for any employee.
+GET As a manager, I want to see the schedule, by listing shifts within a specific time period.
+PUT As a manager, I want to be able to change a shift, by updating the time details.
+PUT As a manager, I want to be able to assign a shift, by changing the employee that will work a shift.
+GET As a manager, I want to contact an employee, by seeing employee details.
+         
+         * 
+         * 
+         * 
+         */
+        $employee = WiwUser::findOne(2);
+        var_dump($employee->shifts);
+        
+        for ($i=0; $i < 100; $i++) { 
+            // get random employee 1-6
+            // get random manager 7-9
+            $emp = rand(1,6);
+            $mgr = rand(7,9);
+            
+            $day    = rand(1,30);
+            $month  = 8;
+            $year   = 2015;
+            $start  = rand(0,12);
+            $end    = rand(12,23);
+            
+            // save to shifts
+            $x = new WiwShift();
+            $x->attributes = [
+                'manager_id'    => $mgr,
+                'employee_id'   => $emp,
+                'start_time'    => "{$year}-{$month}-{$day} {$start}:00:00",
+                'end_time'      => "{$year}-{$month}-{$day} {$end}:00:00",
+                'created_at'    => date("Y-m-d H:i:s")
+            ];
+            // $x->save();
+        }
+
         return $this->render('index',[
             'social' => $arr,
         ]);
