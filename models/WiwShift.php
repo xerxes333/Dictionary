@@ -18,6 +18,11 @@ use Yii;
  */
 class WiwShift extends \yii\db\ActiveRecord
 {
+    public $with;
+    public $week_number;
+    public $year;
+    public $hours_worked;
+    
     /**
      * @inheritdoc
      */
@@ -34,7 +39,7 @@ class WiwShift extends \yii\db\ActiveRecord
         return [
             [['manager_id', 'employee_id'], 'integer'],
             [['break'], 'number'],
-            [['start_time', 'end_time', 'created_at', 'updated_at'], 'safe']
+            [['start_time', 'end_time', 'created_at', 'updated_at', 'with'], 'safe']
         ];
     }
 
@@ -55,23 +60,44 @@ class WiwShift extends \yii\db\ActiveRecord
         ];
     }
     
+    public function getEmployee()
+    {
+        return $this->hasOne(WiwUser::className(), ['id' => 'employee_id']);
+    }
+    
+    public function getManager()
+    {
+        return $this->hasOne(WiwUser::className(), ['id' => 'manager_id']);
+    }
+    
     public function workingWith()
     {
+           
         // we have a shift object in $this
         // find any shift that overlaps && employee_id != $this->employee_id
+        $start = date("Y-m-d 00:00:00",strtotime($this->start_time));
+        $end = date("Y-m-d 23:59:59",strtotime($this->start_time));
         
-        /**
-         * {
-  "shifts": [
-    {
-      "id": 3,
-      "start_time": "Mon, 03 Aug 2015 02:00:00 -0400",
-      "end_time": "Mon, 03 Aug 2015 23:00:00 -0400"
-    },
-         */
+        // var_dump($this->start_time .' '. $this->end_time); return;
         
-        
-        
+         $shifts = WiwShift::find()
+            ->where(['<>','employee_id',$this->employee_id])
+            ->andWhere(['between', 'start_time', $start, $end])
+            ->andWhere(['>=', 'end_time', $this->start_time])
+            ->andWhere(['<=', 'start_time', $this->end_time])
+            // ->andWhere("end_time >= '$this->start_time' and start_time <= '$this->end_time'")
+            // ->createCommand();
+            ->all();
+            
+            if(!empty($shifts)){
+                foreach ($shifts as $key => $shift) {
+                    $list[] = $shift->employee->name; 
+                }
+                
+                $this->with = $list;
+                
+            }
+          
         
     }
 }

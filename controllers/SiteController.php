@@ -81,40 +81,41 @@ class SiteController extends Controller
         
         $d = Dictionary::find()->all();
         
-        // echo str_repeat("<br>",3);
-        // var_dump($body);
         
         /**
-         * The API must follow REST specification:
+         *
+         *  
+The API must follow REST specification:
 
-    POST should be used to create
-    GET should be used to read
-    PUT should be used to update (and optionally to create)
-    DELETE should be used to delete
-  
- 
+POST should be used to create
+GET should be used to read
+PUT should be used to update (and optionally to create)
+DELETE should be used to delete
 
 GET As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me.
 GET As an employee, I want to know who I am working with, by being able see the employees that are working during the same time period as me.
 GET As an employee, I want to know how much I worked, by being able to get a summary of hours worked for each week.
 GET As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
 
-POST/PUT As a manager, I want to schedule my employees, by creating shifts for any employee.
+
 GET As a manager, I want to see the schedule, by listing shifts within a specific time period.
+GET As a manager, I want to contact an employee, by seeing employee details.
+
+POST/PUT As a manager, I want to schedule my employees, by creating shifts for any employee.
 PUT As a manager, I want to be able to change a shift, by updating the time details.
 PUT As a manager, I want to be able to assign a shift, by changing the employee that will work a shift.
-GET As a manager, I want to contact an employee, by seeing employee details.
+
          
          * 
          * 
          * 
          */
+         
+        // quick and dirty shift table propigation
         $employee = WiwUser::findOne(2);
         var_dump($employee->shifts);
         
         for ($i=0; $i < 100; $i++) { 
-            // get random employee 1-6
-            // get random manager 7-9
             $emp = rand(1,6);
             $mgr = rand(7,9);
             
