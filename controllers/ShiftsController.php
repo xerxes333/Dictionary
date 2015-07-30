@@ -9,6 +9,7 @@ use app\models\WiwUser;
 class ShiftsController extends ActiveController
 {
     public $modelClass = 'app\models\WiwShift';
+	private $results = [];
     
     public function actions(){
         $actions = parent::actions();
@@ -46,10 +47,10 @@ class ShiftsController extends ActiveController
                 'email' => $shift->manager->email,
                 'phone' => $shift->manager->phone,
             ];
-            $results[] = $data;
+            $this->results[] = $data;
         }
         
-        return ["shifts" => $results];
+        return ["shifts" => $this->results];
         
         // return new ActiveDataProvider([
             // 'query' => WiwShift::find()->select(['start_time', 'end_time'])->where(['employee_id'=>$id]),
@@ -74,10 +75,10 @@ class ShiftsController extends ActiveController
             $data['start_time'] = date(DATE_RFC2822, strtotime($shift->start_time));
             $data['end_time'] = date(DATE_RFC2822, strtotime($shift->end_time));
             $data['working_with'] = $shift->with;
-            $results[] = $data;
+            $this->results[] = $data;
         }
         
-        return ["shifts" => $results];
+        return ["shifts" => $this->results];
     }
     
     /**
@@ -105,10 +106,10 @@ class ShiftsController extends ActiveController
             $data['week_begin'] = $date->format('Y-m-d');
             $data['week_end'] = $end;
             $data['total_hours'] = $shift->hours_worked;
-            $results[] = $data;
+            $this->results[] = $data;
         }    
         
-        return ["summary" => $results];    
+        return ["summary" => $this->results];    
     }
     
 }
