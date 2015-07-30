@@ -112,35 +112,55 @@ PUT As a manager, I want to be able to assign a shift, by changing the employee 
          */
          
         // quick and dirty shift table propigation
-        $employee = WiwUser::findOne(2);
-        var_dump($employee->shifts);
-        
-        for ($i=0; $i < 100; $i++) { 
-            $emp = rand(1,6);
-            $mgr = rand(7,9);
-            
-            $day    = rand(1,30);
-            $month  = 8;
-            $year   = 2015;
-            $start  = rand(0,12);
-            $end    = rand(12,23);
-            
-            // save to shifts
-            $x = new WiwShift();
-            $x->attributes = [
-                'manager_id'    => $mgr,
-                'employee_id'   => $emp,
-                'start_time'    => "{$year}-{$month}-{$day} {$start}:00:00",
-                'end_time'      => "{$year}-{$month}-{$day} {$end}:00:00",
-                'created_at'    => date("Y-m-d H:i:s")
-            ];
-            // $x->save();
-        }
+        $this->generateRandomShifts();        
+
 
         return $this->render('index',[
             'social' => $arr,
         ]);
     }
+
+	public function generateRandomShifts(){
+	        for ($i=1; $i <= 31; $i++) {
+        	
+			// gets 5 random employees
+        	$emps = range(1,10);
+			shuffle($emps);
+            $emp = array_splice($emps,0,5);
+			
+			$mgr = rand(11,15);
+			$month  = 8;
+			$day	= $i;
+            $year   = 2015;
+            
+			
+			foreach ($emps as $key => $emp) {
+				$start  = rand(0,23);
+				$shiftLen = rand(2,6);
+				
+				if($start + $shiftLen > 23){
+					$end = $start;
+					$start = $end - $shiftLen;
+				} else {
+					$end = $start + $shiftLen;
+				}
+				
+				// save to shifts
+	            $x = new WiwShift();
+	            $x->attributes = [
+	                'manager_id'    => $mgr,
+	                'employee_id'   => $emp,
+	                'start_time'    => "{$year}-{$month}-{$day} {$start}:00:00",
+	                'end_time'      => "{$year}-{$month}-{$day} {$end}:00:00",
+	                'created_at'    => date("Y-m-d H:i:s")
+	            ];
+	            // $x->save();
+				
+			}
+			
+			
+        }
+	}
     
     public function actionDictionary()
     {
