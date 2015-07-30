@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "wiw_shift".
@@ -23,6 +24,8 @@ class WiwShift extends \yii\db\ActiveRecord
     public $year;
     public $hours_worked;
     
+    const SCENARIO_CREATE = 'create';
+    
     /**
      * @inheritdoc
      */
@@ -39,8 +42,30 @@ class WiwShift extends \yii\db\ActiveRecord
         return [
             [['manager_id', 'employee_id'], 'integer'],
             [['break'], 'number'],
-            [['start_time', 'end_time', 'created_at', 'updated_at', 'with'], 'safe']
+            [['start_time', 'end_time', 'created_at', 'updated_at', 'with'], 'safe'],
+            
+            [['manager_id', 'employee_id','start_time', 'end_time'], 'required', 'on' => self::SCENARIO_CREATE],
+            [['start_time', 'end_time'], 'date', 'format'=>'php:Y-m-d H:i:s',  'on' => self::SCENARIO_CREATE],
         ];
+    }
+    
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[self::SCENARIO_CREATE] = ['manager_id', 'employee_id','start_time', 'end_time'];
+        return $scenarios;
+    }
+    
+    public function behaviors()
+    {
+        return [
+        [
+            'class' => TimestampBehavior::className(),
+            'createdAtAttribute' => 'created_at',
+            'updatedAtAttribute' => 'updated_at',
+            'value' => new \yii\db\Expression('NOW()'),
+        ],
+    ];
     }
 
     /**

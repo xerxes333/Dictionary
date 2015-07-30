@@ -35,6 +35,11 @@ class ShiftsController extends ActiveController
      */
     public function actionIndex($user_id, $start_time = null, $end_time = null)
     {
+        // if $user_id supplied 
+            // get their shifts
+        // else
+            // get specific shift $id
+        
     	
 		$manager = WiwUser::findOne($user_id);
 		$isManagerView = ($manager->isManager() && isset($start_time) && isset($end_time)) ? TRUE : FALSE;
@@ -135,12 +140,24 @@ class ShiftsController extends ActiveController
     }
 	
 	public function actionCreate($user_id){
-		
-		throw new \yii\web\HttpException(422, 'Data validation failed ');
-		// make sure we get all the data
-		$params = \Yii::$app->request->getBodyParams();
-		return ['foo'=>$params];
-		
+        
+        // create shift object
+        $shift = new WiwShift(['scenario' => WiwShift::SCENARIO_CREATE]);
+        $shift->manager_id  = $user_id;
+        $shift->attributes  = \Yii::$app->request->getBodyParams();
+        
+        if($shift->validate()){
+            $shift->save();
+            return $shift;
+        } else {
+            foreach ($shift->errors as $error) { $list .= $error[0]; }
+            throw new \yii\web\HttpException(422, 'Data validation failed. ' .$list);
+        }
+        
+        return [
+            'create' => $shift->attributes,
+            'errors' => $shift->errors,
+        ];
 	}
     
 }
