@@ -112,7 +112,7 @@ PUT As a manager, I want to be able to assign a shift, by changing the employee 
          */
          
         // quick and dirty shift table propigation
-        $this->generateRandomShifts();        
+        // $this->generateRandomShifts();        
 
 
         return $this->render('index',[
@@ -154,7 +154,7 @@ PUT As a manager, I want to be able to assign a shift, by changing the employee 
 	                'end_time'      => "{$year}-{$month}-{$day} {$end}:00:00",
 	                'created_at'    => date("Y-m-d H:i:s")
 	            ];
-	            // $x->save();
+	            $x->save();
 				
 			}
 			
