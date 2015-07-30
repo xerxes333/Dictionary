@@ -69,7 +69,7 @@ class SiteController extends Controller
         ];
         
         
-        
+        // messing with Guzzle
         $client = new Client([
             'base_uri' => 'http://dictionary.dev/',
             'headers' => [

@@ -17,6 +17,7 @@ use Yii;
  */
 class WiwUser extends \yii\db\ActiveRecord
 {
+	const MANAGER_ROLE = 'manager';
     /**
      * @inheritdoc
      */
@@ -56,4 +57,8 @@ class WiwUser extends \yii\db\ActiveRecord
     {
         return $this->hasMany(WiwShift::className(), ['employee_id' => 'id']);
     }
+	
+	public function isManager(){
+		return $this->role == self::MANAGER_ROLE ? TRUE : FALSE;
+	}
 }

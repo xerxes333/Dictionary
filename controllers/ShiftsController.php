@@ -14,6 +14,7 @@ class ShiftsController extends ActiveController
     public function actions(){
         $actions = parent::actions();
         unset($actions['index']);
+        unset($actions['create']);
          // $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     }
@@ -29,24 +30,45 @@ class ShiftsController extends ActiveController
     /**
      * As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me. 
      * As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
+	 * 
+	 * As a manager, I want to see the schedule, by listing shifts within a specific time period.
      */
-    public function actionIndex($user_id)
-    {   
-        $shifts = WiwShift::find()
-            ->where(['employee_id'=>$user_id])
-            ->orderBy('start_time ASC')
-            ->all();
+    public function actionIndex($user_id, $start_time = null, $end_time = null)
+    {
+    	
+		$manager = WiwUser::findOne($user_id);
+		$isManagerView = ($manager->isManager() && isset($start_time) && isset($end_time)) ? TRUE : FALSE;
+		
+		if($isManagerView){
+			$shifts = WiwShift::find()
+	            ->where(['between', 'start_time', $start_time, $end_time])
+	            ->orderBy('start_time ASC')
+	            ->all();
+		} else {
+			$shifts = WiwShift::find()
+	            ->where(['employee_id'=>$user_id])
+	            ->orderBy('start_time ASC')
+	            ->all();
+		}
+			   
+        
         
         foreach ($shifts as $key => $shift) {
             
             $data['id'] = $shift->id; 
             $data['start_time'] = date(DATE_RFC2822, strtotime($shift->start_time)); 
             $data['end_time'] = date(DATE_RFC2822, strtotime($shift->end_time));
-            $data['manager'] = [
-                'name' => $shift->manager->name,
-                'email' => $shift->manager->email,
-                'phone' => $shift->manager->phone,
-            ];
+			
+			if($isManagerView){
+				$data['employee'] = $shift->employee->name;
+			} else {
+				$data['manager'] = [
+	                'name' => $shift->manager->name,
+	                'email' => $shift->manager->email,
+	                'phone' => $shift->manager->phone,
+	            ];
+			}
+            
             $this->results[] = $data;
         }
         
@@ -111,6 +133,15 @@ class ShiftsController extends ActiveController
         
         return ["summary" => $this->results];    
     }
+	
+	public function actionCreate($user_id){
+		
+		throw new \yii\web\HttpException(422, 'Data validation failed ');
+		// make sure we get all the data
+		$params = \Yii::$app->request->getBodyParams();
+		return ['foo'=>$params];
+		
+	}
     
 }
 

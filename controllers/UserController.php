@@ -21,6 +21,7 @@ class UserController extends ActiveController
         $user = WiwUser::findOne($id);
         $user->created_at = date(DATE_RFC2822, strtotime($user->created_at));
         $user->updated_at = date(DATE_RFC2822, strtotime($user->updated_at));
+		$user->phone ='foo';
         
         return $user;
         
