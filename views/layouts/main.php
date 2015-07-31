@@ -38,6 +38,7 @@ AppAsset::register($this);
                 'items' => [
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'Dictionary', 'url' => ['/site/dictionary']],
+                    ['label' => 'Scheduler', 'url' => ['/site/scheduler']],
                 ],
             ]);
             NavBar::end();

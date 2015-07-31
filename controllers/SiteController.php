@@ -14,6 +14,7 @@ use app\models\Dictionary;
 use app\models\WiwShift;
 use app\models\WiwUser;
 use yii\helpers\Url;
+use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use GuzzleHttp\Client;
 
@@ -71,16 +72,17 @@ class SiteController extends Controller
         
         // messing with Guzzle
         $client = new Client([
-            'base_uri' => 'http://dictionary.dev/',
             'headers' => [
                 'Accept'     => 'application/json',
             ]
         ]);
-        $response = $client->get('dictionary');
+        
+        $response = $client->get('http://dictionary.dev/shifts',['query' => ['user_id' => 3]]);
         $body = json_decode($response->getBody());
+        var_dump($body);
         
         // quick and dirty shift table propigation
-        WiwShift::generateRandomShifts();     
+        // WiwShift::generateRandomShifts();     
 
 
         return $this->render('index',[
@@ -108,6 +110,26 @@ class SiteController extends Controller
         
         return $this->render('dictionary',[
             'model'    => $model,
+        ]);
+    }
+    
+    public function actionScheduler()
+    {
+        $link = "https://github.com/wheniwork/standards/blob/master/project.md";
+        $md = $this->renderPartial('scheduler_md');
+        
+        $collapse = \yii\bootstrap\Collapse::widget([
+            'items' => [
+                [
+                    'label' => 'Challenge Info (expand for details)',
+                    'content' => 'Source: ' . Html::a($link, $link) . $md,
+                    // 'contentOptions' => ['class' => 'in']
+                ]
+            ]
+        ]);
+        
+        return $this->render('scheduler',[
+            'collapse'    => $collapse,
         ]);
     }
 
