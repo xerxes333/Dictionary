@@ -22,7 +22,7 @@ $config = [
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'dictionary', 'pluralize'=>false],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'shifts', 'pluralize'=>false, 
-                	// 'only' => ['get', 'post','put','delete'],
+                	'except' => ['delete'],
             		'extraPatterns' => [
 			    	    'PUT update/<id>' => 'update',
 				    ],
