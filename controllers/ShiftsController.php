@@ -37,16 +37,20 @@ class ShiftsController extends ActiveController
     }
 
     /**
-     * Returns shifts for the supplied criteria
+     * Gets shifts for the supplied criteria
 	 * 
-	 * @param int $user_id ID of the WiwUser model
+     * This function handles a few possibilities:
+     * As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me. 
+     * As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
+	 *     @example http://api.domain.com/shifts?user_id=3
+     * As a manager, I want to see the schedule, by listing shifts within a specific time period.
+     *     @example http://api.domain.com/shifts?user_id=11&start_time=2015-08-02 00:00:00&end_time=2015-08-03 23:59:59
 	 * 
-	 * @requirement As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me. 
-     * @requirement As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
-	 * @example GET http://dictionary.dev/shifts?user_id=3
-	 * 
-	 * @requirement As a manager, I want to see the schedule, by listing shifts within a specific time period.
-	 * @example http://dictionary.dev/shifts?user_id=11&start_time=2015-08-02 00:00:00&end_time=2015-08-03 23:59:59
+     * @param integer $user_id ID of the WiwUser model
+     * @param string $start_time Shift start time when searching for shifts within a time range
+     * @param string $end_time Shift end time when searching for shifts within a time range
+     * 
+     * @return array Returns an array of matching shifts
 	 * 
      */
     public function actionIndex($user_id, $start_time = null, $end_time = null)
@@ -98,8 +102,15 @@ class ShiftsController extends ActiveController
     }
 
     /**
+     * Gets shifts and employees names with overlapping shifts for the employee 
+     * 
      * As an employee, I want to know who I am working with, by being able see the employees that are working during the same time period as me.
-	 * 		GET http://dictionary.dev/shifts/with?user_id=3
+     *      @example http://api.domain.com/shifts/with?user_id=3
+     * 
+     * @param integer $user_id ID of the WiwUser model
+     * 
+     * @return array Returns an array of matching shifts and employees names
+     * 
      */
     public function actionWith($user_id)
     {
@@ -122,8 +133,15 @@ class ShiftsController extends ActiveController
     }
     
     /**
+     * Gets a summary of hours worked per week for an employee
+     * 
      * As an employee, I want to know how much I worked, by being able to get a summary of hours worked for each week.
-	 * 		GET http://dictionary.dev/shifts/weeklysummary?user_id=3
+	 *     @example http://api.domain.com/shifts/weeklysummary?user_id=3
+     * 
+     * @param integer $user_id ID of the WiwUser model
+     * 
+     * @return array Returns summation of hours worked grouped by week 
+     * 
      */
     public function actionWeeklysummary($user_id)
     {
@@ -154,9 +172,14 @@ class ShiftsController extends ActiveController
     }
 	
 	/**
-	 * As a manager, I want to schedule my employees, by creating shifts for any employee.
-	 * 		http://dictionary.dev/shifts/create
- 	 *		body can include fields from Shift Object (REQUIRED: start_time, end_time, employee_id, manager_id)
+	 * Creates a new shift
+     * 
+     * As a manager, I want to schedule my employees, by creating shifts for any employee.
+     * The body can include fields from the Shift Object (REQUIRED: start_time, end_time, employee_id, manager_id)
+	 *     @example http://api.domain.com/shifts/create --data '{"manager_id":12, "employee_id":3, "start_time":"2015-08-01 01:00:00", "end_time":"2015-08-01 06:00:00"}'
+     * 
+     * @return array On success the new shift information is returned
+     * 
 	 */
 	public function actionCreate()
 	{
@@ -177,10 +200,18 @@ class ShiftsController extends ActiveController
 	}
 	
 	/**
-	 * As a manager, I want to be able to change a shift, by updating the time details.
+	 * Updates and existing shift
+     * 
+     * This function handles a few possibilities: 
+     * As a manager, I want to be able to change a shift, by updating the time details.
 	 * As a manager, I want to be able to assign a shift, by changing the employee that will work a shift.
-	 * 		http://dictionary.dev/shifts/update/155
-	 * 		NOTE: have to use x-www-form-urlencode to submit body data
+	 *     @example http://api.domain.com/shifts/update/155 --data '{"start_time":"2015-08-01 01:00:00"}'
+	 *     NOTE: When testing with Postman, I have to use x-www-form-urlencode to submit body data
+     * 
+     * @param integer $id The id of the shift to update
+     * 
+     * @return array On success the updated shift is returned
+     * 
 	 */
 	public function actionUpdate($id)
 	{
