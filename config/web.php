@@ -17,12 +17,17 @@ $config = [
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
             'enableStrictParsing' => false,
+            'showScriptName' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'dictionary', 'pluralize'=>false],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'shifts', 'pluralize'=>false, 'only' => ['get', 'post','put','delete']],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'user', 'only' => ['get', 'post','put','delete']],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'shifts', 'pluralize'=>false, 
+                	// 'only' => ['get', 'post','put','delete'],
+            		'extraPatterns' => [
+			    	    'PUT update/<id>' => 'update',
+				    ],
+                ],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'request'],
             ],
         ],

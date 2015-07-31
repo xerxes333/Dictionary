@@ -82,9 +82,8 @@ class SiteController extends Controller
         $d = Dictionary::find()->all();
         
         
-        /**
-         *
-         *  
+/**
+ * 
 The API must follow REST specification:
 
 POST should be used to create
@@ -92,24 +91,40 @@ GET should be used to read
 PUT should be used to update (and optionally to create)
 DELETE should be used to delete
 
-GET As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me.
-GET As an employee, I want to know who I am working with, by being able see the employees that are working during the same time period as me.
-GET As an employee, I want to know how much I worked, by being able to get a summary of hours worked for each week.
-GET As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
+As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me.
+As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
+ * GET http://dictionary.dev/shifts?user_id=3
+
+As an employee, I want to know who I am working with, by being able see the employees that are working during the same time period as me.
+ * GET http://dictionary.dev/shifts/with?user_id=3
+
+As an employee, I want to know how much I worked, by being able to get a summary of hours worked for each week.
+ * GET http://dictionary.dev/shifts/weeklysummary?user_id=3
+
 
 
 GET As a manager, I want to see the schedule, by listing shifts within a specific time period.
+ * http://dictionary.dev/shifts?user_id=11&start_time=2015-08-02 00:00:00&end_time=2015-08-03 23:59:59
+
 GET As a manager, I want to contact an employee, by seeing employee details.
+ * http://dictionary.dev/users/9
 
 POST/PUT As a manager, I want to schedule my employees, by creating shifts for any employee.
+ * http://dictionary.dev/shifts/create
+ * body can include fields from Shift Object (REQUIRED: start_time, end_time, employee_id, manager_id)
+
 PUT As a manager, I want to be able to change a shift, by updating the time details.
 PUT As a manager, I want to be able to assign a shift, by changing the employee that will work a shift.
+ * http://dictionary.dev/shifts/update/155 
+ * NOTE: have to use x-www-form-urlencode to submit body data
 
-         
-         * 
-         * 
-         * 
-         */
+
+
+ 
+ * 
+ * 
+ * 
+ */
          
         // quick and dirty shift table propigation
         // $this->generateRandomShifts();        

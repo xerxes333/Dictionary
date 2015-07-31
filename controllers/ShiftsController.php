@@ -1,4 +1,9 @@
 <?
+
+/**
+ * @requirements https://github.com/wheniwork/standards/blob/master/project.md
+ */
+
 namespace app\controllers;
 
 use yii\rest\ActiveController;
@@ -14,11 +19,15 @@ class ShiftsController extends ActiveController
     public function actions(){
         $actions = parent::actions();
         unset($actions['index']);
+        unset($actions['update']);
         unset($actions['create']);
          // $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     }
     
+	/**
+	 * @ignore
+	 */
     public function prepareDataProvider($x)
     {
         return new ActiveDataProvider([
@@ -28,10 +37,17 @@ class ShiftsController extends ActiveController
     }
 
     /**
-     * As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me. 
-     * As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
+     * Returns shifts for the supplied criteria
 	 * 
-	 * As a manager, I want to see the schedule, by listing shifts within a specific time period.
+	 * @param int $user_id ID of the WiwUser model
+	 * 
+	 * @requirement As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me. 
+     * @requirement As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
+	 * @example GET http://dictionary.dev/shifts?user_id=3
+	 * 
+	 * @requirement As a manager, I want to see the schedule, by listing shifts within a specific time period.
+	 * @example http://dictionary.dev/shifts?user_id=11&start_time=2015-08-02 00:00:00&end_time=2015-08-03 23:59:59
+	 * 
      */
     public function actionIndex($user_id, $start_time = null, $end_time = null)
     {
@@ -79,14 +95,11 @@ class ShiftsController extends ActiveController
         
         return ["shifts" => $this->results];
         
-        // return new ActiveDataProvider([
-            // 'query' => WiwShift::find()->select(['start_time', 'end_time'])->where(['employee_id'=>$id]),
-            // 'pagination' => false,
-        // ]);
     }
 
     /**
      * As an employee, I want to know who I am working with, by being able see the employees that are working during the same time period as me.
+	 * 		GET http://dictionary.dev/shifts/with?user_id=3
      */
     public function actionWith($user_id)
     {
@@ -110,6 +123,7 @@ class ShiftsController extends ActiveController
     
     /**
      * As an employee, I want to know how much I worked, by being able to get a summary of hours worked for each week.
+	 * 		GET http://dictionary.dev/shifts/weeklysummary?user_id=3
      */
     public function actionWeeklysummary($user_id)
     {
@@ -139,26 +153,50 @@ class ShiftsController extends ActiveController
         return ["summary" => $this->results];    
     }
 	
-	public function actionCreate($user_id){
+	/**
+	 * As a manager, I want to schedule my employees, by creating shifts for any employee.
+	 * 		http://dictionary.dev/shifts/create
+ 	 *		body can include fields from Shift Object (REQUIRED: start_time, end_time, employee_id, manager_id)
+	 */
+	public function actionCreate()
+	{
         
         // create shift object
         $shift = new WiwShift(['scenario' => WiwShift::SCENARIO_CREATE]);
-        $shift->manager_id  = $user_id;
         $shift->attributes  = \Yii::$app->request->getBodyParams();
-        
-        if($shift->validate()){
-            $shift->save();
+		
+        if($shift->save()){
+            $shift->refresh();
             return $shift;
         } else {
+        	$list = '';
             foreach ($shift->errors as $error) { $list .= $error[0]; }
             throw new \yii\web\HttpException(422, 'Data validation failed. ' .$list);
         }
         
-        return [
-            'create' => $shift->attributes,
-            'errors' => $shift->errors,
-        ];
 	}
+	
+	/**
+	 * As a manager, I want to be able to change a shift, by updating the time details.
+	 * As a manager, I want to be able to assign a shift, by changing the employee that will work a shift.
+	 * 		http://dictionary.dev/shifts/update/155
+	 * 		NOTE: have to use x-www-form-urlencode to submit body data
+	 */
+	public function actionUpdate($id)
+	{
+		$shift = WiwShift::findOne($id);
+		$shift->attributes =  \Yii::$app->request->getBodyParams();
+		
+		if($shift->save()){
+			$shift->refresh();
+            return $shift;
+        } else {
+        	$list = '';
+            foreach ($shift->errors as $error) { $list .= $error[0]; }
+            throw new \yii\web\HttpException(422, 'Data validation failed. ' .$list);
+        }
+	}
+	
     
 }
 

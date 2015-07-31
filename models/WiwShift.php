@@ -25,6 +25,7 @@ class WiwShift extends \yii\db\ActiveRecord
     public $hours_worked;
     
     const SCENARIO_CREATE = 'create';
+    const SCENARIO_UPDATE = 'update';
     
     /**
      * @inheritdoc
@@ -46,6 +47,7 @@ class WiwShift extends \yii\db\ActiveRecord
             
             [['manager_id', 'employee_id','start_time', 'end_time'], 'required', 'on' => self::SCENARIO_CREATE],
             [['start_time', 'end_time'], 'date', 'format'=>'php:Y-m-d H:i:s',  'on' => self::SCENARIO_CREATE],
+            ['manager_id', 'validateManager',  'on' => self::SCENARIO_CREATE],
         ];
     }
     
@@ -59,14 +61,20 @@ class WiwShift extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-        [
-            'class' => TimestampBehavior::className(),
-            'createdAtAttribute' => 'created_at',
-            'updatedAtAttribute' => 'updated_at',
-            'value' => new \yii\db\Expression('NOW()'),
-        ],
-    ];
+	        [
+	            'class' => TimestampBehavior::className(),
+	            'createdAtAttribute' => 'created_at',
+	            'updatedAtAttribute' => 'updated_at',
+	            'value' => new \yii\db\Expression('NOW()'),
+	        ],
+   		];
     }
+
+	public function validateManager($attribute)
+	{
+		if($this->manager->role != 'manager')
+			 $this->addError($attribute, 'Only managers can create shifts.'); 
+	}
 
     /**
      * @inheritdoc
