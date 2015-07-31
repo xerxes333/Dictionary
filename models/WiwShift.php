@@ -128,4 +128,47 @@ class WiwShift extends \yii\db\ActiveRecord
           
         
     }
+    
+    public static function generateRandomShifts()
+    {
+        for ($i=1; $i <= 31; $i++) {
+            
+            // gets 5 random employees
+            $emps = range(1,10);
+            shuffle($emps);
+            $emp = array_splice($emps,0,5);
+            
+            $mgr = rand(11,15);
+            $month  = 8;
+            $day    = $i;
+            $year   = 2015;
+            
+            
+            foreach ($emps as $key => $emp) {
+                $start  = rand(0,23);
+                $shiftLen = rand(2,6);
+                
+                if($start + $shiftLen > 23){
+                    $end = $start;
+                    $start = $end - $shiftLen;
+                } else {
+                    $end = $start + $shiftLen;
+                }
+                
+                // save to shifts
+                $x = new WiwShift();
+                $x->attributes = [
+                    'manager_id'    => $mgr,
+                    'employee_id'   => $emp,
+                    'start_time'    => "{$year}-{$month}-{$day} {$start}:00:00",
+                    'end_time'      => "{$year}-{$month}-{$day} {$end}:00:00",
+                    'created_at'    => date("Y-m-d H:i:s")
+                ];
+                $x->save();
+                
+            }
+            
+            
+        }
+    }
 }

@@ -80,7 +80,7 @@ class SiteController extends Controller
         $body = json_decode($response->getBody());
         
         // quick and dirty shift table propigation
-        // $this->generateRandomShifts();        
+        WiwShift::generateRandomShifts();     
 
 
         return $this->render('index',[
@@ -88,48 +88,6 @@ class SiteController extends Controller
         ]);
     }
 
-	public function generateRandomShifts(){
-	        for ($i=1; $i <= 31; $i++) {
-        	
-			// gets 5 random employees
-        	$emps = range(1,10);
-			shuffle($emps);
-            $emp = array_splice($emps,0,5);
-			
-			$mgr = rand(11,15);
-			$month  = 8;
-			$day	= $i;
-            $year   = 2015;
-            
-			
-			foreach ($emps as $key => $emp) {
-				$start  = rand(0,23);
-				$shiftLen = rand(2,6);
-				
-				if($start + $shiftLen > 23){
-					$end = $start;
-					$start = $end - $shiftLen;
-				} else {
-					$end = $start + $shiftLen;
-				}
-				
-				// save to shifts
-	            $x = new WiwShift();
-	            $x->attributes = [
-	                'manager_id'    => $mgr,
-	                'employee_id'   => $emp,
-	                'start_time'    => "{$year}-{$month}-{$day} {$start}:00:00",
-	                'end_time'      => "{$year}-{$month}-{$day} {$end}:00:00",
-	                'created_at'    => date("Y-m-d H:i:s")
-	            ];
-	            $x->save();
-				
-			}
-			
-			
-        }
-	}
-    
     public function actionDictionary()
     {
         $model  = new DictionaryForm();
@@ -210,4 +168,5 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    
 }
