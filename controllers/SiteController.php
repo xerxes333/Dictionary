@@ -69,22 +69,6 @@ class SiteController extends Controller
             'linkedin'      => 'https://www.linkedin.com/pub/jeremy-draxler/11/b76/309',
         ];
         
-        
-        // messing with Guzzle
-        $client = new Client([
-            'headers' => [
-                'Accept'     => 'application/json',
-            ]
-        ]);
-        
-        $response = $client->get('http://dictionary.dev/shifts',['query' => ['user_id' => 3]]);
-        $body = json_decode($response->getBody());
-        var_dump($body);
-        
-        // quick and dirty shift table propigation
-        // WiwShift::generateRandomShifts();     
-
-
         return $this->render('index',[
             'social' => $arr,
         ]);
@@ -115,6 +99,9 @@ class SiteController extends Controller
     
     public function actionScheduler()
     {
+        // quick and dirty shift table propigation
+        // WiwShift::generateRandomShifts();
+        
         $link = "https://github.com/wheniwork/standards/blob/master/project.md";
         $md = $this->renderPartial('scheduler_md');
         
@@ -133,6 +120,32 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionCurl(){
+            
+            
+        $req = Yii::$app->request;
+        
+        // messing with Guzzle
+        $client = new Client(['headers' => ['Accept' => 'application/json',]]); 
+        // $response = $client->get('http://dictionary.dev/shifts',['query' => ['user_id' => 3]]);
+        $response = $client->get('http://dictionary.dev/shifts?user_id=3');
+        $body = json_decode($response->getBody());
+        
+        // $shifts = $body['shifts'];
+        
+        foreach($body->shifts as $shift) {
+            $manager = $shift->manager;
+            $x .= '<dl class="dl-horizontal">';
+            $x .= "<dt>ID</dt><dd>$shift->id </dd>";
+            $x .= "<dt>Start</dt><dd>$shift->start_time</dd>";
+            $x .= "<dt>End</dt><dd>$shift->end_time</dd>";
+            $x .= "<dt>Manager</dt><dd> $manager->name  Email:$manager->email Phone:$manager->phone</dd>";
+            $x .= '</dl>';
+        }
+        
+        // return var_dump($body);
+        return $x;
+    }
 
     public function actionDownload($name = "none"){
         $path = Url::to('@app/uploads/');
