@@ -110,26 +110,21 @@ class WiwShift extends \yii\db\ActiveRecord
         // find any shift that overlaps && employee_id != $this->employee_id
         $start = date("Y-m-d 00:00:00",strtotime($this->start_time));
         $end = date("Y-m-d 23:59:59",strtotime($this->start_time));
-        
-        // var_dump($this->start_time .' '. $this->end_time); return;
+        $list = [];
         
          $shifts = WiwShift::find()
             ->where(['<>','employee_id',$this->employee_id])
             ->andWhere(['between', 'start_time', $start, $end])
             ->andWhere(['>=', 'end_time', $this->start_time])
             ->andWhere(['<=', 'start_time', $this->end_time])
-            // ->andWhere("end_time >= '$this->start_time' and start_time <= '$this->end_time'")
-            // ->createCommand();
             ->all();
-            
-            if(!empty($shifts)){
-                foreach ($shifts as $key => $shift) {
-                    $list[] = $shift->employee->name; 
-                }
-                
-                $this->with = $list;
-                
-            }
+        
+        // we could return the entire employee object but for now lets just supply the name
+        foreach ($shifts as $key => $shift) {
+            $list[] = $shift->employee->name; 
+        }
+    
+        $this->with = $list;
           
         
     }

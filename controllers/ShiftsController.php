@@ -42,9 +42,9 @@ class ShiftsController extends ActiveController
      * This function handles a few possibilities:
      * As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me. 
      * As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
-	 *     @example http://api.domain.com/shifts?user_id=3
+	 *     @example GET http://api.domain.com/shifts?user_id=3
      * As a manager, I want to see the schedule, by listing shifts within a specific time period.
-     *     @example http://api.domain.com/shifts?user_id=11&start_time=2015-08-02 00:00:00&end_time=2015-08-03 23:59:59
+     *     @example GET http://api.domain.com/shifts?user_id=11&start_time=2015-08-02 00:00:00&end_time=2015-08-03 23:59:59
 	 * 
      * @param integer $user_id ID of the WiwUser model
      * @param string $start_time Shift start time when searching for shifts within a time range
@@ -55,12 +55,6 @@ class ShiftsController extends ActiveController
      */
     public function actionIndex($user_id, $start_time = null, $end_time = null)
     {
-        // if $user_id supplied 
-            // get their shifts
-        // else
-            // get specific shift $id
-        
-    	
 		$manager = WiwUser::findOne($user_id);
 		$isManagerView = ($manager->isManager() && isset($start_time) && isset($end_time)) ? TRUE : FALSE;
 		
@@ -102,10 +96,10 @@ class ShiftsController extends ActiveController
     }
 
     /**
-     * Gets shifts and employees names with overlapping shifts for the employee 
+     * Gets shifts and co-worker names with overlapping shifts for the employee 
      * 
      * As an employee, I want to know who I am working with, by being able see the employees that are working during the same time period as me.
-     *      @example http://api.domain.com/shifts/with?user_id=3
+     *      @example GET http://api.domain.com/shifts/with?user_id=3
      * 
      * @param integer $user_id ID of the WiwUser model
      * 
@@ -136,7 +130,7 @@ class ShiftsController extends ActiveController
      * Gets a summary of hours worked per week for an employee
      * 
      * As an employee, I want to know how much I worked, by being able to get a summary of hours worked for each week.
-	 *     @example http://api.domain.com/shifts/weeklysummary?user_id=3
+	 *     @example GET http://api.domain.com/shifts/weeklysummary?user_id=3
      * 
      * @param integer $user_id ID of the WiwUser model
      * 
@@ -160,9 +154,9 @@ class ShiftsController extends ActiveController
         foreach ($shifts as $key => $shift) {
             
             $date = $date->setISODate($shift->year, $shift->week_number);
-            $end = date("Y-m-d",strtotime($date->format('Y-m-d') . " +6 days"));
+            $end = date(DATE_RFC2822,strtotime($date->format('Y-m-d') . " +6 days"));
             
-            $data['week_begin'] = $date->format('Y-m-d');
+            $data['week_begin'] = $date->format(DATE_RFC2822);
             $data['week_end'] = $end;
             $data['total_hours'] = $shift->hours_worked;
             $this->results[] = $data;
@@ -176,7 +170,7 @@ class ShiftsController extends ActiveController
      * 
      * As a manager, I want to schedule my employees, by creating shifts for any employee.
      * The body can include fields from the Shift Object (REQUIRED: start_time, end_time, employee_id, manager_id)
-	 *     @example http://api.domain.com/shifts/create --data '{"manager_id":12, "employee_id":3, "start_time":"2015-08-01 01:00:00", "end_time":"2015-08-01 06:00:00"}'
+	 *     @example POST http://api.domain.com/shifts/create --data '{"manager_id":12, "employee_id":3, "start_time":"2015-08-01 01:00:00", "end_time":"2015-08-01 06:00:00"}'
      * 
      * @return array On success the new shift information is returned
      * 
@@ -205,7 +199,7 @@ class ShiftsController extends ActiveController
      * This function handles a few possibilities: 
      * As a manager, I want to be able to change a shift, by updating the time details.
 	 * As a manager, I want to be able to assign a shift, by changing the employee that will work a shift.
-	 *     @example http://api.domain.com/shifts/update/155 --data '{"start_time":"2015-08-01 01:00:00"}'
+	 *     @example PUT http://api.domain.com/shifts/update/155 --data '{"start_time":"2015-08-01 01:00:00"}'
 	 *     NOTE: When testing with Postman, I have to use x-www-form-urlencode to submit body data
      * 
      * @param integer $id The id of the shift to update
