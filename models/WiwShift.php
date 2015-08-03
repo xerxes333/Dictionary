@@ -44,6 +44,8 @@ class WiwShift extends \yii\db\ActiveRecord
             [['manager_id', 'employee_id'], 'integer'],
             [['break'], 'number'],
             [['start_time', 'end_time', 'created_at', 'updated_at', 'with'], 'safe'],
+            // TODO: need to add validation to ensure start/end times dont get backwards
+            // TODO: need to validate user roles when creating/updating
             
             [['manager_id', 'employee_id','start_time', 'end_time'], 'required', 'on' => self::SCENARIO_CREATE],
             [['start_time', 'end_time'], 'date', 'format'=>'php:Y-m-d H:i:s',  'on' => self::SCENARIO_CREATE],
