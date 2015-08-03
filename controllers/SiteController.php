@@ -121,30 +121,51 @@ class SiteController extends Controller
     }
 
     public function actionCurl(){
-            
-            
-        $req = Yii::$app->request;
         
+		// just hardcode samples fo examples
+        $apiCalls = [
+        	"emp_shifts" => [
+    			"method" => "GET",
+    			"url" => "http://dictionary.dev/shifts?user_id=3",
+    			"data" => "",
+    		],
+    		"emp_with" => [
+    			"method" => "GET",
+    			"url" => "http://dictionary.dev/shifts/with?user_id=3",
+    			"data" => "",
+    		],
+        ];
+		
+        $req = Yii::$app->request;
+        $action = $apiCalls[$req->get('action')];
+        $html = '';
+		
         // messing with Guzzle
         $client = new Client(['headers' => ['Accept' => 'application/json',]]); 
-        // $response = $client->get('http://dictionary.dev/shifts',['query' => ['user_id' => 3]]);
-        $response = $client->get('http://dictionary.dev/shifts?user_id=3');
-        $body = json_decode($response->getBody());
+		
+		switch ($action['method']) {
+			case 'GET':
+				$response = $client->get($action['url']);
+				break;
+			case 'POST':
+			case 'PUT':
+				// $response = $client->get($action['url']);
+				break;
+			default:
+				
+				break;
+		}
         
-        // $shifts = $body['shifts'];
+        $body = $response->getBody();
+        // $body = json_decode($response->getBody());
         
-        foreach($body->shifts as $shift) {
-            $manager = $shift->manager;
-            $x .= '<dl class="dl-horizontal">';
-            $x .= "<dt>ID</dt><dd>$shift->id </dd>";
-            $x .= "<dt>Start</dt><dd>$shift->start_time</dd>";
-            $x .= "<dt>End</dt><dd>$shift->end_time</dd>";
-            $x .= "<dt>Manager</dt><dd> $manager->name  Email:$manager->email Phone:$manager->phone</dd>";
-            $x .= '</dl>';
-        }
+        // $html = $this->renderPartial('_employee_shifts', [
+        	// '' => '',
+        	// 'shifts' => $body->shifts
+        	// ]);
         
         // return var_dump($body);
-        return $x;
+        return $body;
     }
 
     public function actionDownload($name = "none"){

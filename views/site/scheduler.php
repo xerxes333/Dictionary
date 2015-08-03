@@ -7,6 +7,9 @@ use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 $this->title = 'T3S - Shifts Challenge';
+
+
+
 ?>
 <div class="site-dictionary">
     

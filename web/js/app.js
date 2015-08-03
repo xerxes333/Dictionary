@@ -9,20 +9,11 @@ $('#dictionary-button').on('click', function (e) {
 
 $('#scheduler-button').on('click', function (e) {
 	
-	// GET http://api.domain.com/shifts?user_id=3
-	switch($(this).val()){
-		case 'emp_shifts':
-			url = 'http://dictionary.dev/shifts?user_id=3';
-			method = "GET";
-			break;
-		default:
-			return false;
-	}
-	
+	// all this should do is call the curl action and pass a var to determine the correct action to take
 	$.ajax({
 		url: 'http://dictionary.dev/site/curl',
 		method: "GET",
-		data: { action: "emp_shifts"},
+		data: { action: $(this).val()},
 		success: function(data) {
 			// $("#results-well").find("#url").html( method + " " + url);
 			$("#results-well").find("#results").html(data);
