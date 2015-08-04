@@ -21,6 +21,7 @@ class ShiftsController extends ActiveController
         unset($actions['index']);
         unset($actions['update']);
         unset($actions['create']);
+        unset($actions['delete']);
          // $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     }

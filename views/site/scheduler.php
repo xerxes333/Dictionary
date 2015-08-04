@@ -25,20 +25,37 @@ $this->title = 'T3S - Shifts Challenge';
             <div class="row">
                 <div class="col-lg-12">
                     The solution is the underlying API created in <code>ShiftsController</code>and <code>UserController</code> classes.
-                    Here we are simply using the API to show examples.
                     
-                    <br/><br/><br/>
-                    <ul class="list-ununstyled">
+                    <ul class="list-ununstyled scheduler-stories">
+                        
+                        <? foreach ($requests as $request): ?>
                         <li>
-                            As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me.
-                            <?= Html::button('Run', ['class' => 'btn btn-primary btn-xs', 'name' => 'scheduler-button', 'id' => 'scheduler-button', 'value'=>'emp_shifts']) ?>
+                            <?= Html::button('Run', ['class' => 'btn btn-primary btn-xs scheduler-button','value'=>$request->action]) ?>
+                            <? echo $request->text; ?>
                         </li>
+                        <? endforeach; ?>
+                        
                     </ul>
                     
-                    <div class="well" id="results-well">
-                        <code id="url">url</code>
-                        <div id="results">results</div>
+                    
+                    
+                    <hr>
+                    <div class="" id="results-well">
+                        <p>
+                            <h4>Example Request:</h4> 
+                            <code id="url">request</code>
+                        </p>
+                        
+                        <p>
+                            <h4>Example Response:</h4> 
+                            <div id="results">
+                                <pre style="font-size: 11px;">results</pre>
+                            </div>
+                        </p>
+                        
                     </div>
+                    
+                    <div class="alert alert-info" role="alert">These actually call the API, they are NOT just dumping out static JSON results.</div>
                     
                 </div>
             </div>

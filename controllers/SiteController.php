@@ -13,6 +13,7 @@ use app\models\DictionaryForm;
 use app\models\Dictionary;
 use app\models\WiwShift;
 use app\models\WiwUser;
+use app\models\WiwApiCall;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
@@ -108,64 +109,62 @@ class SiteController extends Controller
         $collapse = \yii\bootstrap\Collapse::widget([
             'items' => [
                 [
-                    'label' => 'Challenge Info (expand for details)',
+                    'label' => 'Challenge Info (click to expand)',
                     'content' => 'Source: ' . Html::a($link, $link) . $md,
                     // 'contentOptions' => ['class' => 'in']
                 ]
             ]
         ]);
         
+        $requests = WiwApiCall::find()->all();
+        
         return $this->render('scheduler',[
-            'collapse'    => $collapse,
+            'collapse'  => $collapse,
+            'requests'  => $requests,
         ]);
     }
 
     public function actionCurl(){
         
-		// just hardcode samples fo examples
-        $apiCalls = [
-        	"emp_shifts" => [
-    			"method" => "GET",
-    			"url" => "http://dictionary.dev/shifts?user_id=3",
-    			"data" => "",
-    		],
-    		"emp_with" => [
-    			"method" => "GET",
-    			"url" => "http://dictionary.dev/shifts/with?user_id=3",
-    			"data" => "",
-    		],
-        ];
-		
-        $req = Yii::$app->request;
-        $action = $apiCalls[$req->get('action')];
-        $html = '';
+        $req    = Yii::$app->request;
+        $action = $req->get('action');
+        $request= WiwApiCall::find()->where(['action'=>$action])->one();
+        $html   = '';
 		
         // messing with Guzzle
         $client = new Client(['headers' => ['Accept' => 'application/json',]]); 
 		
-		switch ($action['method']) {
+		switch ($request->method) {
 			case 'GET':
-				$response = $client->get($action['url']);
+				$response = $client->get($request->url);
 				break;
 			case 'POST':
-			case 'PUT':
-				// $response = $client->get($action['url']);
+                $enc = json_decode($request->data,true);
+				$response = $client->post($request->url, ['form_params' => $enc]);
+                
+                if($request->action == 'mgr_create')
+                    $this->deleteShiftExample();
+                
 				break;
+            case 'PUT':
+                $enc = json_decode($request->data,true);
+                $response = $client->put($request->url, ['form_params' => $enc]);
+                break;
 			default:
 				
 				break;
 		}
         
-        $body = $response->getBody();
-        // $body = json_decode($response->getBody());
+        // tomfoolery here to pretty print guzzle results
+        $body = json_decode($response->getBody());
+        $response = json_encode($body,JSON_PRETTY_PRINT);
         
-        // $html = $this->renderPartial('_employee_shifts', [
-        	// '' => '',
-        	// 'shifts' => $body->shifts
-        	// ]);
+        $data = [
+            "url" => $request->method ." ". $request->url . (!empty($request->data)? " --data '$request->data'" : ""),
+            "response" => $response,
+        ];
         
-        // return var_dump($body);
-        return $body;
+        return json_encode($data);
     }
 
     public function actionDownload($name = "none"){
@@ -225,4 +224,7 @@ class SiteController extends Controller
         return $this->render('about');
     }
     
+    private function deleteShiftExample(){
+        // immediately delete the created shift to avoid clutter in schema table
+    }
 }

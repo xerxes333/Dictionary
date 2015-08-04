@@ -142,4 +142,11 @@ h3.notes{
 div.results-success{
 	padding: 10px;
 }
+
+ul.scheduler-stories{
+	margin-top: 20px;
+}
+
+ul.scheduler-stories li{
+	margin-bottom: 5px;
 }
