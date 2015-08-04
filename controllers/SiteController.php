@@ -130,17 +130,18 @@ class SiteController extends Controller
         $action = $req->get('action');
         $request= WiwApiCall::find()->where(['action'=>$action])->one();
         $html   = '';
+        $domain = Yii::$app->request->servername;
 		
         // messing with Guzzle
         $client = new Client(['headers' => ['Accept' => 'application/json',]]); 
 		
 		switch ($request->method) {
 			case 'GET':
-				$response = $client->get($request->url);
+				$response = $client->get($domain . $request->url);
 				break;
 			case 'POST':
                 $enc = json_decode($request->data,true);
-				$response = $client->post($request->url, ['form_params' => $enc]);
+				$response = $client->post($domain . $request->url, ['form_params' => $enc]);
                 
                 if($request->action == 'mgr_create')
                     $this->deleteShiftExample();
@@ -148,7 +149,7 @@ class SiteController extends Controller
 				break;
             case 'PUT':
                 $enc = json_decode($request->data,true);
-                $response = $client->put($request->url, ['form_params' => $enc]);
+                $response = $client->put($domain . $request->url, ['form_params' => $enc]);
                 break;
 			default:
 				
@@ -160,7 +161,7 @@ class SiteController extends Controller
         $response = json_encode($body,JSON_PRETTY_PRINT);
         
         $data = [
-            "url" => $request->method ." ". $request->url . (!empty($request->data)? " --data '$request->data'" : ""),
+            "url" => $request->method ." ". $domain . $request->url . (!empty($request->data)? " --data '$request->data'" : ""),
             "response" => $response,
         ];
         
