@@ -24,7 +24,11 @@ $this->title = 'T3S - Shifts Challenge';
         <div class="well">
             <div class="row">
                 <div class="col-lg-12">
-                    The solution is the underlying API created in <code>ShiftsController</code>and <code>UserController</code> classes.
+                    The solution is the underlying API created in
+                    <code>ShiftsController</code><a href="https://github.com/xerxes333/Dictionary/blob/master/controllers/ShiftsController.php" target="_new">(link)</a> 
+                    and 
+                    <code>UserController</code><a href="https://github.com/xerxes333/Dictionary/blob/master/controllers/UserController.php" target="_new">(link)</a> 
+                    classes.
                     
                     <ul class="list-ununstyled scheduler-stories">
                         

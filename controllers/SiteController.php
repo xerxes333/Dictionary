@@ -144,7 +144,7 @@ class SiteController extends Controller
 				$response = $client->post($domain . $request->url, ['form_params' => $enc]);
                 
                 if($request->action == 'mgr_create')
-                    $this->deleteShiftExample();
+                    $this->deleteShiftExample($response);
                 
 				break;
             case 'PUT':
@@ -225,7 +225,13 @@ class SiteController extends Controller
         return $this->render('about');
     }
     
-    private function deleteShiftExample(){
-        // immediately delete the created shift to avoid clutter in schema table
+    /**
+     * This just deletes the newly create shift to keep redundant clutter out of the schema table
+     */
+    private function deleteShiftExample($response){
+        $obj = json_decode($response->getBody());
+        $shift = WiwShift::findOne($obj->id);
+        $shift->delete();
+        return true;
     }
 }
