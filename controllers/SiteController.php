@@ -130,7 +130,7 @@ class SiteController extends Controller
         $action = $req->get('action');
         $request= WiwApiCall::find()->where(['action'=>$action])->one();
         $html   = '';
-        $domain = Yii::$app->request->servername;
+        $domain = 'http://' . Yii::$app->request->servername;
 		
         // messing with Guzzle
         $client = new Client(['headers' => ['Accept' => 'application/json',]]); 
