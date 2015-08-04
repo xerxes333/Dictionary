@@ -1,11 +1,17 @@
 <h1 id="rest-scheduler-api">REST Scheduler API</h1>
 
 <p>
-	While we will accept a framework of your choice, and a language of your choice, we <em>highly</em> encourage using <strong>PHP*</strong> and one of the following frameworks: <a href="https://github.com/sparkphp/Project">Spark</a>, <a href="https://github.com/radarphp/Radar.Project">Radar</a>, or <a href="https://github.com/alexbilbie/proton">Proton</a>.
+	While we will accept a framework of your choice, and a language of your choice, we <em>highly</em> encourage using <strong>PHP*</strong> and one of the 
+	following frameworks: <a href="https://github.com/sparkphp/Project" target="_new">Spark</a>, <a href="https://github.com/radarphp/Radar.Project" target="_new">Radar</a>, 
+	or <a href="https://github.com/alexbilbie/proton" target="_new">Proton</a>.
 </p>
 
 <p>
-	If you choose to use another language, please be prepared to show fluency in multiple languages (including at least one <a href="https://en.wikipedia.org/wiki/List_of_C-family_programming_languages">C-family language</a>), and knowledge of multiple design principles (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a>, <a href="https://en.wikipedia.org/wiki/Open/closed_principle">Open/Closed</a>, etc) and patterns (<a href="https://en.wikipedia.org/wiki/Factory_method_pattern">Factory</a>, <a href="https://en.wikipedia.org/wiki/Data_mapper_pattern">DataMapper</a>, etc).
+	If you choose to use another language, please be prepared to show fluency in multiple languages (including at least one <a href="https://en.wikipedia.org/wiki/List_of_C-family_programming_languages" target="_new">C-family language</a>), 
+	and knowledge of multiple design principles (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_new">DRY</a>, 
+	<a href="https://en.wikipedia.org/wiki/Open/closed_principle" target="_new">Open/Closed</a>, etc) and patterns 
+	(<a href="https://en.wikipedia.org/wiki/Factory_method_pattern" target="_new">Factory</a>, 
+	<a href="https://en.wikipedia.org/wiki/Data_mapper_pattern" target="_new">DataMapper</a>, etc).
 </p>
 
 <p>
