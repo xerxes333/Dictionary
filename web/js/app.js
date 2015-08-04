@@ -9,13 +9,12 @@ $('#dictionary-button').on('click', function (e) {
 
 $('.scheduler-button').on('click', function (e) {
 	
-	
 	$(".scheduler-button").removeClass('btn-success');
 	$(this).addClass('btn-success');
 	
 	// all this should do is call the curl action and pass a var to determine the correct action to take
 	$.ajax({
-		url: 'http://dictionary.dev/site/curl',
+		url: 'http://'+ document.domain +'/site/curl',
 		method: "GET",
 		dataType: "json",
 		data: { action: $(this).val()},
