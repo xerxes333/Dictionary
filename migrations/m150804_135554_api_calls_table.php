@@ -89,7 +89,6 @@ class m150804_135554_api_calls_table extends Migration
     public function down()
     {
         $this->dropTable('wiw_api_call');
-        return false;
     }
     
     /*
