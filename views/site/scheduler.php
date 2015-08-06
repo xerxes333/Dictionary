@@ -11,7 +11,7 @@ $this->title = 'T3S - Shifts Challenge';
 
 
 ?>
-<div class="site-dictionary">
+<div class="site-scheduler">
     
     <h2>Scheduler Challenge</h2>
     <div class="row">

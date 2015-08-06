@@ -130,7 +130,7 @@ a.desc:after {
 	list-style-type: none;
 }
 
-.well ul.side-by-side{
+ul.side-by-side{
 	display: inline-block;
 	list-style-type: none;
 }
