@@ -56,28 +56,40 @@ $this -> title = 'T3S - Dictionary Challenge';
         </div>
     </div>
 
-    <h2>My Thoughts</h2>
     <div class="row">
-        <p>
-            Initially I started to use the Yii2 framework to create models to utilize the
-            database to do the searching but after run some tests with larger sample sizes it started
-            using too much RAM by loading whole objects into memory.  I could have just switched to writing
-            a PHP CLI script to complete the task but I decided to start cataloging my projects and challenges in one place.
-        </p>
-        <p>
-            I added some functionality to the challenge by allowing the user
-            to choose the sequence length and the possible number of occurrences.  he original request
-            asked that I showcase some of my various skills and pro-actively thinking about the overall
-            functionality of an interface is one of those soft-skills.
-        </p>
-        <p>
-            The Dictionary model handles the majority of the heavy lifting in the <code>$model->process()</code> method.
-            I need to separate out various parts of the process method into other methods to follow "Open/Close Principals".
-            Also need to use model constants for sequence length and occurrences options when the model is constructed.
-        </p>
-        <p>
-            I'm have no doubt there is a better way to process the data to reduce the bigO
-        </p>
+        <div class="col-lg-12">
+            <h2>My Thoughts</h2>
+            <p>
+                Initially I started to use the Yii2 framework to create models to utilize the
+                database to do the computations but after running some tests with larger sample sizes it started
+                using too much RAM because it was loading entire model objects into memory.  I could have just switched to writing
+                a PHP CLI script to complete the task but I decided to start cataloging my projects and challenges in one place, so I 
+                just let the <code>DisctionaryForm->process()</code> method handle the calculations.
+            </p>
+            <p>
+                I added some functionality to the challenge by allowing the user
+                to choose the sequence length and the possible number of occurrences.  The original request
+                asked that I showcase some of my various skills and pro-actively thinking about the overall
+                functionality of an interface is one of those skills.
+            </p>
+            <p>
+                After submitting this challenge to the company they responded back saying they recieved numerous qualified applicants and decided to move forward with another candidate.  
+                I do not believe they had another candidate because the job listing is still posted a month later. 
+                I requested feedback from them regarding my resume, cover letter, challenge submission, etc. but they never responded back.  
+                Which leads me to believe they did not like something in my code or my solutions/results are wrong.  
+                Unfortunatly with no feedback from them its impossible to say specifically.
+            </p>
+            <p>
+                TODO:
+                <? echo HTML::ul([
+                    'Separate out various parts of the <code>process()</code> method into other methods to follow "Open/Close Principals"', 
+                    "Use model constants for sequence length and occurrences options when the model is initialized.", 
+                    "Reduce computations? I have no doubt there is a better way to process the data to reduce the bigO, I'm just not sure how to accomplish that right now.",
+                    "I need to do a complete test to confirm my results are accurate.",
+                 ],['encode'=>0]); ?>
+            </p>
+            
+        </div>
     </div>
 
 </div>

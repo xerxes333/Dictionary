@@ -29,8 +29,6 @@ $this->title = 'Triple 3 Studios';
         <div class="col-md-12 text-center">
 
 			<? //echo HTML::img('@web/images/T3S.png') ?>
-			<br>
-			<br>
 			<? foreach ($social as $name => $href) {
 				echo HTML::a(HTML::img("@web/images/social/64/{$name} icon.png"), $href, ["target" => "_new"]) . " ";
 			} ?>
