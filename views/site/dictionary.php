@@ -73,11 +73,11 @@ $this -> title = 'T3S - Dictionary Challenge';
                 functionality of an interface is one of those skills.
             </p>
             <p>
-                After submitting this challenge to the company they responded back saying they recieved numerous qualified applicants and decided to move forward with another candidate.  
+                After submitting this challenge to the company they responded back saying they received numerous qualified applicants and decided to move forward with another candidate. 
                 I do not believe they had another candidate because the job listing is still posted a month later. 
-                I requested feedback from them regarding my resume, cover letter, challenge submission, etc. but they never responded back.  
-                Which leads me to believe they did not like something in my code or my solutions/results are wrong.  
-                Unfortunatly with no feedback from them its impossible to say specifically.
+                I requested feedback from them regarding my resume, cover letter, challenge submission, etc. but they never responded back. 
+                Which leads me to believe they did not like something in my code or my solutions/results are wrong. 
+                Unfortunately with no feedback from them its impossible to say specifically.
             </p>
             <p>
                 TODO:
