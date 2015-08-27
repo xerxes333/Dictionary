@@ -23,10 +23,19 @@ $this->title = 'Dragon Con 2015';
 
     <div class="row">
         <div class="col-lg-12">
-            <p><u><font size="4">Confirmed People:</font></u><font> (please confirm with me so I can add you to the list)</font></p>
+            <p>
+                <h2>Rooming</h2>
+                <ul>
+                    <li>We have one room in the Hyatt and one room in the Marriott again this year</li>
+                    <li>We can re-arrange rooming arrangements as necessary once we all arrive</li>
+                    <li>Based on last years room prices I anticipate the cost for each person will be approximately $290. (based on 4 person occupancy)</li>
+                    <li>Please have the cash on hand Thursday for rooms, this will make things easier for everyone. </li>
+        
+                </ul>
+            </p>
             
-            <div class="col-lg-4">
-                <div class="panel panel-default">
+            <div class="col-lg-3">
+                <div class="panel panel-dc">
                     <div class="panel-heading">Marriott</div>
                     <div class="panel-body">
                         <ol>
@@ -39,23 +48,23 @@ $this->title = 'Dragon Con 2015';
                 </div>
             </div>
             
-            <div class="col-lg-4">
-                <div class="panel panel-default">
+            <div class="col-lg-3">
+                <div class="panel panel-dc">
                     <div class="panel-heading">Hyatt 1</div>
                     <div class="panel-body">
                         <ol>
                             <li>Amanda</li>
                             <li>Liz</li>
                             <li>Alex</li>
-                            <li></li>
+                            <li>Blake</li>
                         </ol>
                     </div>
                 </div>
             </div>
             
-             <div class="col-lg-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Hyatt 2</div>
+             <div class="col-lg-3">
+                <div class="panel panel-dc">
+                    <div class="panel-heading">Hyatt 2 ???</div>
                     <div class="panel-body">
                         <ol>
                             <li>Dawn</li>
@@ -73,124 +82,115 @@ $this->title = 'Dragon Con 2015';
   
     <div class="row">
         <div class="col-lg-12">
-            <u><font size="4">Rooming:</font></u><br />
-            <ul>
-                <li>We have one room in the Hyatt and one room in the Marriott again this year</li>
-                <li>We can re-arrange rooming arrangements as necessary once we all arrive</li>
-                <li>Based on last years room prices I anticipate the cost for each person will be approximatly $290.</li>
-                <li>Having the room cash on hand Thursday for me will just make things easier for everyone. </li>
-    
-            </ul>
-        </div>  
-    </div>  
-    
-    <div class="row">
-        <div class="col-lg-12">
-            <u><font size="4">Transportation:</font></u><font> (please let me know your dept/arr plan</font>s and available seats so I can share it and we can carpool)
-            <ul>
-                <li>
-                    <b>Jeremy </b><br />
-                    <ul>
-                        <li>Leaving: Thursday Sep 3rd AM</li>
-                        <li>Returning: Monday Sep 7th whenever</li>
-                        <li>Seats:</li>
-                        <ol>
-                            <li>Dan</li>
-                            <li>Available</li>
-                            <li>Available</li>
-                        </ol>
-                    </ul>
-                </li>
-        
-                <li>
-                    <b>Liz </b><br />
-                    <ul>
-                        <li>Leaving: Thursday Sep 3rd AM</li>
-                        <li>Returning: Monday Sep 7th early</li>
-                        <li>Seats:</li>
-                        <ol>
-                            <li>Amanda</li>
-                            <li>Available</li>
-                            <li>Available</li>
-                        </ol>
-                    </ul>
-                </li>
-        
-            </ul>
+            <p>
+                <h2>Transportation</h2>
+                Please let me know your plans and available seats so I can share it and we can carpool
+            </p>
+            
+            <div class="col-lg-4">
+                <div class="panel panel-dc">
+                    <div class="panel-heading">Jeremy</div>
+                    <div class="panel-body">
+                        <ul>
+                            <li>Leaving: Thursday Sep 3rd AM</li>
+                            <li class="text-danger">Returning: Tuesday Sep 8th whenever</li>
+                            <li>Seats:</li>
+                            <ol>
+                                <li>Dan</li>
+                                <li>Mike (returning)</li>
+                                <li></li>
+                            </ol>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="panel panel-dc">
+                    <div class="panel-heading">Liz</div>
+                    <div class="panel-body">
+                        <ul>
+                            <li>Leaving: Thursday Sep 3rd AM</li>
+                            <li>Returning: Monday Sep 7th whenever</li>
+                            <li>Seats:</li>
+                            <ol>
+                                <li>Amanda</li>
+                                <li>Mike (arriving)</li>
+                                <li></li>
+                            </ol>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+  
         </div>  
     </div> 
     
     <div class="row">
         <div class="col-lg-12">
-            <font size="4"><u>Consumables:</u></font> (please list any items you are bringing/buying and <b>willing to share</b> with others.&nbsp; *Keep your receipts if you want to split the cost with others sharing)
-    
-            <ul>
-                <li>
-                    <b>Jeremy</b>
-                    <ul>
-                        <li>Random Snacks</li>
-                        <li>Baileys</li>
-                        <li>Capt. Morgan</li>
-                        <li>Coke Zero</li>
-                    </ul>
-                </li>
-                <li>
-                    <b>Dan</b>
-                    <ul>
-                        <li>Beer</li>
-                        <li>Snacks</li>
-                    </ul>
-                </li>
-                <!-- <li>
-                    <b>Christo</b>
-                    <ul>
-                        <li>Vodka</li>
-                        <li>Tequila</li>
-                        <li>Spiced Rum</li>
-                        <li>Peep Juice</li>
-                        <li>Trader Joe Snacks</li>
-                    </ul>
-                </li> -->
-            </ul>
+            
+            <p>
+                <h2>Loot</h2>
+                Please list any items you are bringing and <b>willing to share</b> with others. *(Keep your receipts if you want to split the cost with others sharing
+            </p>
+             <div class="col-lg-3">
+                <div class="panel panel-dc">
+                    <div class="panel-heading">Jeremy</div>
+                    <div class="panel-body">
+                        <ul>
+                            <li>Random Snacks</li>
+                            <li>Baileys</li>
+                            <li>Capt. Morgan</li>
+                            <li>Coke Zero 6pk</li>
+                            
+                            <li>Electrical Power strip</li>
+                            <li>Cooler</li>
+                            <li>Laptop</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="col-lg-3">
+                <div class="panel panel-dc">
+                    <div class="panel-heading">Dan</div>
+                    <div class="panel-body">
+                        <ul>
+                            <li>Random Snacks</li>
+                            <li>Beer</li>
+                            
+                            <li>Cooler</li>
+                            <li>Binoculars</li>
+                            <li>Air Mattress</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="col-lg-3">
+                <div class="panel panel-dc">
+                    <div class="panel-heading">Liz</div>
+                    <div class="panel-body">
+                        <ul>
+                            <li>Cooler</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="col-lg-3">
+                <div class="panel panel-dc">
+                    <div class="panel-heading">Blake</div>
+                    <div class="panel-body">
+                        <ul>
+                            <li>Random Snacks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>  
     </div>  
-
-    <div class="row">
-        <div class="col-lg-12">
-            <font size="4"><u>Non-Consumables:</u></font></p>
-            <ul>
-                <li>
-                    <b>Jeremy</b>
-                    <ul>
-                        <li>Electrical Power strip</li>
-                        <li>Cooler</li>
-                        <li>Laptop (You are welcome to use my laptop for email and internet while at D*C)</li>
-                    </ul>
-                </li>
-                
-               <li>
-                    <b>Dan</b>
-                    <ul>
-                        <li>Cooler</li>
-                        <li>Binoculars</li>
-                        <li>Air Mattress</li>
-                    </ul>
-                </li>
-
-                <li>
-                    <b>Liz</b>
-                    <ul>
-                        <li>Cooler</li>
-                    </ul>
-                </li>
-
-            </ul>
-        </div>  
-    </div>  
-
-
-
-
 
 
 </div>

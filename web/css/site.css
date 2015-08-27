@@ -150,3 +150,20 @@ ul.scheduler-stories{
 ul.scheduler-stories li{
 	margin-bottom: 5px;
 }
+
+
+.panel-dc > .panel-heading {
+    background-color: #cb8db7;
+    border-color: #916583;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 5px 10px;
+}
+.panel-dc {
+    border-color: #916583;
+}
+
+.panel-dc > .panel-body > ul,ol{
+	padding-left: 10px;
+}
