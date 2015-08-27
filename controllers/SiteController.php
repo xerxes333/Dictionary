@@ -225,6 +225,11 @@ class SiteController extends Controller
         return $this->render('about');
     }
     
+    public function actionDc2015()
+    {
+        return $this->render('dc2015');
+    }
+    
     /**
      * This just deletes the newly create shift to keep redundant clutter out of the schema table
      */
