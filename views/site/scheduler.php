@@ -36,7 +36,7 @@ $this->title = 'T3S - Shifts Challenge';
                         
                         <p class="text-primary">*NOTE: These buttons make AJAX requests to the API (code located in the app.js file), they are not just rendering static JSON results.</p>
                         
-                        <ul class="list-ununstyled scheduler-stories">
+                        <ol class="list-ununstyled scheduler-stories">
                             
                             <? foreach ($requests as $request): ?>
                             <li>
@@ -45,7 +45,7 @@ $this->title = 'T3S - Shifts Challenge';
                             </li>
                             <? endforeach; ?>
                             
-                        </ul>
+                        </ol>
                         <hr>
                         <div class="" id="results-well">
                             <p>
@@ -72,11 +72,21 @@ $this->title = 'T3S - Shifts Challenge';
             
             <h2>My Thoughts</h2>
             <p>
-                
+                Over all pretty simple and straight forward challenge, no tricks or anything like that.  
+                The only real issue I ran into was dumbing down the built in Yii2 ActiveController actions.  
+                By default the ActiveController offers all the basic CRUD options and the challenge states only the provided User Stories be exposed.
+            </p>
+            <p>
+                It seemed logical, so I combined stories 1 and 4.    
+            </p>
+            <p>  
+                I like these types of "real world" challenges rather than "trick puzzles".    
+            </p>
+            <p>
+                <span class="text-primary"><strong>TODO:</strong></span>
                 <? echo HTML::ul([
-                    "Need to add authentication",
+                    "Need to add authentication to the API request",
                     "Need to clean up and document SiteController curl action",
-                    "Need to reorganize challenges/puzzles out of nav bar",
                  ]); ?>
                 
             </p>

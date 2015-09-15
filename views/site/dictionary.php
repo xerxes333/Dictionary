@@ -69,22 +69,15 @@ $this -> title = 'T3S - Dictionary Challenge';
             <p>
                 I added some functionality to the challenge by allowing the user
                 to choose the sequence length and the possible number of occurrences.  The original request
-                asked that I showcase some of my various skills and pro-actively thinking about the overall
+                asked that I showcase some of my various skills and proactively thinking about the overall
                 functionality of an interface is one of those skills.
             </p>
             <p>
-                After submitting this challenge to the company they responded back saying they received numerous qualified applicants and decided to move forward with another candidate. 
-                I do not believe they had another candidate because the job listing is still posted a month later. 
-                I requested feedback from them regarding my resume, cover letter, challenge submission, etc. but they never responded back. 
-                Which leads me to believe they did not like something in my code or my solutions/results are wrong. 
-                Unfortunately with no feedback from them its impossible to say specifically.
-            </p>
-            <p>
-                TODO:
+                <span class="text-primary"><strong>TODO:</strong></span>
                 <? echo HTML::ul([
                     'Separate out various parts of the <code>process()</code> method into other methods to follow "Open/Close Principals"', 
                     "Use model constants for sequence length and occurrences options when the model is initialized.", 
-                    "Reduce computations? I have no doubt there is a better way to process the data to reduce the bigO, I'm just not sure how to accomplish that right now.",
+                    "Reduce computations? I'm there is a better way to process the data to reduce the bigO, I'm just not sure how to accomplish that right now.",
                     "I need to do a complete test to confirm my results are accurate.",
                  ],['encode'=>0]); ?>
             </p>
