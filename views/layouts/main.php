@@ -37,8 +37,13 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
                     ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'Dictionary', 'url' => ['/site/dictionary']],
-                    ['label' => 'Scheduler', 'url' => ['/site/scheduler']],
+                    ['label' => 'Challenges', 
+                        'url' => '#',
+                        'items' =>[
+                            ['label' => 'Dictionary', 'url' => ['/site/dictionary']],
+                            ['label' => 'Scheduler', 'url' => ['/site/scheduler']],
+                        ] 
+                    ],
                 ],
             ]);
             NavBar::end();
