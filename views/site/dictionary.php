@@ -64,7 +64,7 @@ $this -> title = 'T3S - Dictionary Challenge';
                 database to do the computations but after running some tests with larger sample sizes it started
                 using too much RAM because it was loading entire model objects into memory.  I could have just switched to writing
                 a PHP CLI script to complete the task but I decided to start cataloging my projects and challenges in one place, so I 
-                just let the <code>DisctionaryForm->process()</code> method handle the calculations.
+                just let the <code>DictionaryForm->process()</code> method handle the calculations.
             </p>
             <p>
                 I added some functionality to the challenge by allowing the user
