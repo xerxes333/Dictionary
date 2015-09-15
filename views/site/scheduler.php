@@ -33,8 +33,10 @@ $this->title = 'T3S - Shifts Challenge';
                         and 
                         <code>UserController</code><a href="https://github.com/xerxes333/Dictionary/blob/master/controllers/UserController.php" target="_new">(link)</a> 
                         classes.
-                        
-                        <p class="text-primary">*NOTE: These buttons make AJAX requests to the API (code located in the app.js file), they are not just rendering static JSON results.</p>
+  
+                        <p class="text">*NOTE: These buttons make AJAX requests <a href="https://github.com/xerxes333/Dictionary/blob/master/web/js/app.js" target="_new">(link)</a> to the API,
+                             they are not just rendering static JSON results.
+                         </p>
                         
                         <ol class="list-ununstyled scheduler-stories">
                             
