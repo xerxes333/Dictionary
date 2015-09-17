@@ -35,5 +35,4 @@ $this->title = 'Triple 3 Studios';
 			
 		</div>
     </div>
-    
 </div>

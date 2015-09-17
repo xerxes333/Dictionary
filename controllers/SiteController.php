@@ -74,6 +74,13 @@ class SiteController extends Controller
             'social' => $arr,
         ]);
     }
+    
+    public function actionWorks()
+    {
+        return $this->render('works',[
+            // 'arr' => $arr,
+        ]);
+    }
 
     public function actionDictionary()
     {
