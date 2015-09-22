@@ -6,6 +6,11 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'modules' => [
+        'scheduler' => [
+            'class' => 'app\modules\scheduler\Scheduler',
+        ],
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -21,13 +26,13 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'dictionary', 'pluralize'=>false],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'shifts', 'pluralize'=>false, 
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'scheduler/shifts', 'pluralize'=>false, 
                 	'except' => ['delete'],
             		'extraPatterns' => [
 			    	    'PUT update/<id>' => 'update',
 				    ],
                 ],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'scheduler/user'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'request'],
             ],
         ],

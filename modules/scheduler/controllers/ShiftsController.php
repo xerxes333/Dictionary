@@ -4,16 +4,16 @@
  * @requirements https://github.com/wheniwork/standards/blob/master/project.md
  */
 
-namespace app\controllers;
+namespace app\modules\scheduler\controllers;
 
 use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
-use app\models\WiwShift;
-use app\models\WiwUser;
+use app\modules\scheduler\models\WiwShift;
+use app\modules\scheduler\models\WiwUser;
 
 class ShiftsController extends ActiveController
 {
-    public $modelClass = 'app\models\WiwShift';
+    public $modelClass = 'app\modules\scheduler\models\WiwShift';
 	private $results = [];
     
     public function actions(){
