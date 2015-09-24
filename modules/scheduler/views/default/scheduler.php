@@ -80,6 +80,7 @@ $this->title = 'T3S - Shifts Challenge';
                 Over all pretty simple and straight forward challenge, no tricks or anything like that.  
                 The only real issue I ran into was dumbing down the built in Yii2 ActiveController actions.  
                 By default the ActiveController offers all the basic CRUD options and the challenge states only the provided User Stories be exposed.
+                I could have created my own class to handle the API curling but I just decided to use Guzzle instead.
             </p>
             <p>
                 It seemed logical, so I combined stories 1 and 4.    
@@ -95,8 +96,6 @@ $this->title = 'T3S - Shifts Challenge';
                     "Story 1,2, and 4 currently retrieve all shifts (past & future) for the employee.
                         By default it should search future shifts only but if a start and/or end date is supplied use that range instead.",
                     "Combine 2 with 1 & 4?",
-                    "", 
-    
                  ]); ?>
                 
             </p>
