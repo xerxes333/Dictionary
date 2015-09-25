@@ -10,6 +10,7 @@ use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 use app\modules\scheduler\models\WiwShift;
 use app\modules\scheduler\models\WiwUser;
+use yii\filters\auth\HttpBasicAuth;
 
 class ShiftsController extends ActiveController
 {
@@ -26,6 +27,15 @@ class ShiftsController extends ActiveController
         return $actions;
     }
     
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors['authenticator'] = [
+            'class' => HttpBasicAuth::className(),
+        ];
+        return $behaviors;
+    }
+
 	/**
 	 * @ignore
 	 */

@@ -91,8 +91,7 @@ $this->title = 'T3S - Shifts Challenge';
             <p>
                 <span class="text-primary"><strong>TODO:</strong></span>
                 <? echo HTML::ul([
-                    "Need to add authentication to the API request",
-                    "Need to clean up and document SiteController curl action",
+                    "Need to add authentication to the User API request",
                     "Story 1,2, and 4 currently retrieve all shifts (past & future) for the employee.
                         By default it should search future shifts only but if a start and/or end date is supplied use that range instead.",
                     "Combine 2 with 1 & 4?",
