@@ -96,7 +96,7 @@ class WiwApiCall extends \yii\db\ActiveRecord
         
         // messing with Guzzle
         $client = new Client([
-            'auth' => ['comeonfhqwhgads'],
+            'auth' => ['comeonfhqwhgads',null],
             'headers' => ['Accept' => 'application/json']
         ]);
         
@@ -136,7 +136,7 @@ class WiwApiCall extends \yii\db\ActiveRecord
         $response = json_encode($body,JSON_PRETTY_PRINT);
         
         $ret = [
-            "url" => "{$api->method} {$this->requestUrl}" . (!empty($this->data)? " --data '$this->data'" : ""),
+            "url" => "{$this->method} {$this->requestUrl}" . (!empty($this->data)? " --data '$this->data'" : ""),
             "response" => $response,
         ];
         
