@@ -30,9 +30,9 @@ class ShiftsController extends ActiveController
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        $behaviors['authenticator'] = [
-            'class' => HttpBasicAuth::className(),
-        ];
+        // $behaviors['authenticator'] = [
+            // 'class' => HttpBasicAuth::className(),
+        // ];
         return $behaviors;
     }
 
