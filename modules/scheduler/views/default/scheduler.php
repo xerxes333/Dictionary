@@ -32,12 +32,12 @@ $this->title = 'T3S - Shifts Challenge';
                 <div class="row">
                     <div class="col-lg-12">
                         The solution is the underlying API created in
-                        <code>ShiftsController</code><a href="https://github.com/xerxes333/Dictionary/blob/master/modules/scheduler/controllers/ShiftsController.php" target="_new">(link)</a> 
+                        <code>ShiftsController</code><a href="https://github.com/xerxes333/Dictionary/blob/scheduler/modules/scheduler/controllers/ShiftsController.php" target="_new">(link)</a> 
                         and 
-                        <code>UserController</code><a href="https://github.com/xerxes333/Dictionary/blob/master/modules/scheduler/controllers/UserController.php" target="_new">(link)</a> 
+                        <code>UserController</code><a href="https://github.com/xerxes333/Dictionary/blob/scheduler/modules/scheduler/controllers/UserController.php" target="_new">(link)</a> 
                         classes.
   
-                        <p class="text">*NOTE: These buttons make AJAX requests <a href="https://github.com/xerxes333/Dictionary/blob/master/modules/scheduler/assets/js/app.js" target="_new">(link)</a> to the API,
+                        <p class="text">*NOTE: These buttons make AJAX requests <a href="https://github.com/xerxes333/Dictionary/blob/scheduler/modules/scheduler/assets/js/app.js" target="_new">(link)</a> to the API,
                              they are not just rendering static JSON results.
                          </p>
                         
