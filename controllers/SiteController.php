@@ -86,11 +86,15 @@ class SiteController extends Controller
     {
         $client = new Client(['headers' => ['Accept' => 'application/json',]]);
         $response = $client->get("http://gosports.herokuapp.com/channels/");
-        $body = json_decode($response->getBody());
+        $episodes = json_decode($response->getBody());
+        
+        $response = $client->get("http://gosports.herokuapp.com/events/");
+        $events = json_decode($response->getBody());
         
         
         return $this->render('paintball',[
-            'data' => $body,
+            'data' => $episodes,
+            'events' => $events
         ]);
     }
 
@@ -116,76 +120,6 @@ class SiteController extends Controller
             'model'    => $model,
         ]);
     }
-    
-    public function actionScheduler()
-    {
-        // quick and dirty shift table propigation
-        // WiwShift::generateRandomShifts();
-        
-        $link = "https://github.com/wheniwork/standards/blob/master/project.md";
-        $md = $this->renderPartial('scheduler_md');
-        
-        $collapse = \yii\bootstrap\Collapse::widget([
-            'items' => [
-                [
-                    'label' => 'Challenge Info (click to expand)',
-                    'content' => 'Source: ' . Html::a($link, $link) . $md,
-                    // 'contentOptions' => ['class' => 'in']
-                ]
-            ]
-        ]);
-        
-        $requests = WiwApiCall::find()->all();
-        
-        return $this->render('scheduler',[
-            'collapse'  => $collapse,
-            'requests'  => $requests,
-        ]);
-    }
-
-    public function actionCurl(){
-        
-        $req    = Yii::$app->request;
-        $action = $req->get('action');
-        $request= WiwApiCall::find()->where(['action'=>$action])->one();
-        $html   = '';
-        $domain = 'http://' . Yii::$app->request->servername;
-		
-        // messing with Guzzle
-        $client = new Client(['headers' => ['Accept' => 'application/json',]]); 
-		
-		switch ($request->method) {
-			case 'GET':
-				$response = $client->get($domain . $request->url);
-				break;
-			case 'POST':
-                $enc = json_decode($request->data,true);
-				$response = $client->post($domain . $request->url, ['form_params' => $enc]);
-                
-                if($request->action == 'mgr_create')
-                    $this->deleteShiftExample($response);
-                
-				break;
-            case 'PUT':
-                $enc = json_decode($request->data,true);
-                $response = $client->put($domain . $request->url, ['form_params' => $enc]);
-                break;
-			default:
-				
-				break;
-		}
-        
-        // tomfoolery here to pretty print guzzle results
-        $body = json_decode($response->getBody());
-        $response = json_encode($body,JSON_PRETTY_PRINT);
-        
-        $data = [
-            "url" => $request->method ." ". $domain . $request->url . (!empty($request->data)? " --data '$request->data'" : ""),
-            "response" => $response,
-        ];
-        
-        return json_encode($data);
-    }
 
     public function actionDownload($name = "none"){
         $path = Url::to('@app/uploads/');
@@ -197,9 +131,6 @@ class SiteController extends Controller
             return $this->goHome();
         
     }
-
-
-
 
 
     public function actionLogin()
@@ -249,13 +180,4 @@ class SiteController extends Controller
         return $this->render('dc2015');
     }
     
-    /**
-     * This just deletes the newly create shift to keep redundant clutter out of the schema table
-     */
-    private function deleteShiftExample($response){
-        $obj = json_decode($response->getBody());
-        $shift = WiwShift::findOne($obj->id);
-        $shift->delete();
-        return true;
-    }
 }

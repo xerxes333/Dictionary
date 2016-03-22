@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
+use app\modules\scheduler\assets\SchedulerAsset;
+
+SchedulerAsset::register($this);
 // use yii\bootstrap\Collapse;
 
 /* @var $this yii\web\View */
@@ -29,12 +32,12 @@ $this->title = 'T3S - Shifts Challenge';
                 <div class="row">
                     <div class="col-lg-12">
                         The solution is the underlying API created in
-                        <code>ShiftsController</code><a href="https://github.com/xerxes333/Dictionary/blob/master/controllers/ShiftsController.php" target="_new">(link)</a> 
+                        <code>ShiftsController</code><a href="https://github.com/xerxes333/Dictionary/blob/scheduler/modules/scheduler/controllers/ShiftsController.php" target="_new">(link)</a> 
                         and 
-                        <code>UserController</code><a href="https://github.com/xerxes333/Dictionary/blob/master/controllers/UserController.php" target="_new">(link)</a> 
+                        <code>UserController</code><a href="https://github.com/xerxes333/Dictionary/blob/scheduler/modules/scheduler/controllers/UserController.php" target="_new">(link)</a> 
                         classes.
   
-                        <p class="text">*NOTE: These buttons make AJAX requests <a href="https://github.com/xerxes333/Dictionary/blob/master/web/js/app.js" target="_new">(link)</a> to the API,
+                        <p class="text">*NOTE: These buttons make AJAX requests <a href="https://github.com/xerxes333/Dictionary/blob/scheduler/modules/scheduler/assets/js/app.js" target="_new">(link)</a> to the API,
                              they are not just rendering static JSON results.
                          </p>
                         
@@ -77,6 +80,7 @@ $this->title = 'T3S - Shifts Challenge';
                 Over all pretty simple and straight forward challenge, no tricks or anything like that.  
                 The only real issue I ran into was dumbing down the built in Yii2 ActiveController actions.  
                 By default the ActiveController offers all the basic CRUD options and the challenge states only the provided User Stories be exposed.
+                I could have created my own class to handle the API curling but I just decided to use Guzzle instead.
             </p>
             <p>
                 It seemed logical, so I combined stories 1 and 4.    
@@ -87,13 +91,10 @@ $this->title = 'T3S - Shifts Challenge';
             <p>
                 <span class="text-primary"><strong>TODO:</strong></span>
                 <? echo HTML::ul([
-                    "Need to add authentication to the API request",
-                    "Need to clean up and document SiteController curl action",
+                    "Need to add authentication to the User API request",
                     "Story 1,2, and 4 currently retrieve all shifts (past & future) for the employee.
                         By default it should search future shifts only but if a start and/or end date is supplied use that range instead.",
                     "Combine 2 with 1 & 4?",
-                    "", 
-    
                  ]); ?>
                 
             </p>

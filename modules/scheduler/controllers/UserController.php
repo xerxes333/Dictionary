@@ -1,13 +1,13 @@
 <?
-namespace app\controllers;
+namespace app\modules\scheduler\controllers;
 
 use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
-use app\models\WiwUser;
+use app\modules\scheduler\models\WiwUser;
 
 class UserController extends ActiveController
 {
-    public $modelClass = 'app\models\WiwUser';
+    public $modelClass = 'app\modules\scheduler\models\WiwUser';
     
 	/**
 	 * Returns user information

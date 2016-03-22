@@ -42,7 +42,7 @@ AppAsset::register($this);
                         'url' => '#',
                         'items' =>[
                             ['label' => 'Dictionary', 'url' => ['/site/dictionary']],
-                            ['label' => 'Scheduler', 'url' => ['/site/scheduler']],
+                            ['label' => 'Scheduler', 'url' => ['/scheduler']],
                         ] 
                     ],
                 ],
