@@ -44,11 +44,11 @@ $("body").on("click", "a.episode_link", function(){
         type="application/x-shockwave-flash" autoplay="true" id="limelight_player_45041" name="limelight_player_45041" 
         class="LimelightEmbeddedPlayerFlash swfPrev-beforeswfanchor0 swfNext-afterswfanchor0" 
         data="//video.limelight.com/player/loader.swf" height="537px" width="100%"> 
-        <param name="movie" value="http://video.limelight.com/player/loader.swf"/>
-        <param name="wmode" value="window"/>
-        <param name="allowScriptAccess" value="always"/>
-        <param name="allowFullScreen" value="true"/>
-        <param name="flashVars" value="playerForm=fc40dbd8074e41dcb70d5f47bbf85da1&amp;autoplay=false&amp;autoplayNextClip=false&amp;mediaId=${id}"/>
+            <param name="movie" value="http://video.limelight.com/player/loader.swf"/>
+            <param name="wmode" value="window"/>
+            <param name="allowScriptAccess" value="always"/>
+            <param name="allowFullScreen" value="true"/>
+            <param name="flashVars" value="playerForm=fc40dbd8074e41dcb70d5f47bbf85da1&amp;autoplay=false&amp;autoplayNextClip=false&amp;mediaId=${id}"/>
         </object>
         <script>LimelightPlayerUtil.initEmbed('limelight_player_45041');</script>
         </span>
