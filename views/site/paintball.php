@@ -11,6 +11,7 @@ $this->title = 'Triple 3 Studios';
 ?>
 
 
+<script src="http://video.limelight.com/player/embed.js"></script>
 
 <div class="site-index">
     <div class="row">        
@@ -35,8 +36,7 @@ $this->title = 'Triple 3 Studios';
             frameborder="0" 
             scrolling="no">
             </iframe> 
-
-
+            
         </div>
     </div>
     

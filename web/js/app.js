@@ -39,7 +39,7 @@ $("body").on("click", "a.episode_link", function(){
         <h3>${title}</h3>
  
         <span class="LimelightEmbeddedPlayer">
-        <script src="http://video.limelight.com/player/embed.js"></script>
+        
         <object 
         type="application/x-shockwave-flash" autoplay="true" id="limelight_player_45041" name="limelight_player_45041" 
         class="LimelightEmbeddedPlayerFlash swfPrev-beforeswfanchor0 swfNext-afterswfanchor0" 
@@ -50,7 +50,7 @@ $("body").on("click", "a.episode_link", function(){
         <param name="allowFullScreen" value="true"/>
         <param name="flashVars" value="playerForm=fc40dbd8074e41dcb70d5f47bbf85da1&amp;autoplay=false&amp;autoplayNextClip=false&amp;mediaId=${id}"/>
         </object>
-        <script>LimelightPlayerUtil.initEmbed('limelight_player_95243');</script>
+        <script>LimelightPlayerUtil.initEmbed('limelight_player_45041');</script>
         </span>
     `;
 
