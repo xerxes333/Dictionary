@@ -29,7 +29,7 @@ $this->title = 'Triple 3 Studios';
             <? echo HTML::a(HTML::img("@web/images/ridenhour_screenshot.jpg"), "http://voteridenhour.com" , ["target" => "_new"]) . " "; ?>
         </div>
         <div class="col-md-6">
-            Election website for Mecklenburg County Commisioner MAtthew Ridenhour.
+            Election website for Mecklenburg County Commisioner Matthew Ridenhour.
             
         </div>
     </div>

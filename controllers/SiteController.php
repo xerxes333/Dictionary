@@ -81,6 +81,18 @@ class SiteController extends Controller
             // 'arr' => $arr,
         ]);
     }
+    
+    public function actionPaintball()
+    {
+        $client = new Client(['headers' => ['Accept' => 'application/json',]]);
+        $response = $client->get("http://gosports.herokuapp.com/channels/");
+        $body = json_decode($response->getBody());
+        
+        
+        return $this->render('paintball',[
+            'data' => $body,
+        ]);
+    }
 
     public function actionDictionary()
     {
