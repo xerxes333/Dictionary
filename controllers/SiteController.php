@@ -180,4 +180,9 @@ class SiteController extends Controller
         return $this->render('dc2015');
     }
     
+    public function actionDc2016()
+    {
+        return $this->render('dc2016');
+    }
+    
 }
