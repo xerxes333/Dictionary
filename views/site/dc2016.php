@@ -1,11 +1,13 @@
 <?php
 use yii\helpers\Html;
 
+$year = 2016;
+
 /* @var $this yii\web\View */
-$this->title = 'Dragon Con 2015';
+$this->title = 'Dragon Con ' . $year;
 // $this->params['breadcrumbs'][] = $this->title;
 
-$year = 2016;
+
 
 ?>
 <div class="site-about">
