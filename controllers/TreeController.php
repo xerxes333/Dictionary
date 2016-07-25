@@ -36,7 +36,7 @@ class TreeController extends Controller
     }
     
     private function checkDb($post){
-        
+        $str = "";
         $trees  = Tree::find()->orderBy('id')->all();
         foreach ($trees as $key => $value) {
             $str .= $value->text;
