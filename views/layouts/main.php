@@ -42,8 +42,9 @@ AppAsset::register($this);
                     ['label' => 'Challenges', 
                         'url' => '#',
                         'items' =>[
-                            ['label' => 'Dictionary', 'url' => ['/site/dictionary']],
-                            ['label' => 'Scheduler', 'url' => ['/scheduler']],
+                            ['label' => 'Dictionary',   'url' => ['/site/dictionary']],
+                            ['label' => 'Scheduler',    'url' => ['/scheduler']],
+                            ['label' => 'jsTree',       'url' => ['/site/jstree']],
                         ] 
                     ],
                 ],
