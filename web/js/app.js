@@ -118,7 +118,7 @@ function pollServerForChanges() {
 			$('#html1').jstree(true).refresh(true);
 		}
 		
-		var begin 	= new Date('07/28/2016');
+		var begin 	= new Date('07/24/2016');
 		var end 	= new Date('07/31/2016');
 		
 		if(begin < Date.now() && Date.now() < end)
