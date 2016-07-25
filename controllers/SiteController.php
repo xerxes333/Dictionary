@@ -185,4 +185,9 @@ class SiteController extends Controller
         return $this->render('dc2016');
     }
     
+    public function actionJstree()
+    {
+        return $this->render('jstree');
+    }
+    
 }

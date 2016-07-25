@@ -19,8 +19,10 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        '//cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css'
     ];
     public $js = [
+        '//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.1/jstree.min.js',
         'js/app.js',
     ];
     public $depends = [

@@ -34,6 +34,7 @@ $config = [
                 ],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'scheduler/user'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'request'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'tree'],
             ],
         ],
         'cache' => [
