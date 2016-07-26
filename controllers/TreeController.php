@@ -26,6 +26,13 @@ class TreeController extends Controller
         return json_encode(["count" => $count]);
     }
     
+    public function actionReset(){
+        $res = Tree::deleteAll("id>2");
+        return json_encode([
+            "msg" => "msg"
+        ]);
+    }
+    
     public function actionChanges(){
         
         $request= Yii::$app->request;

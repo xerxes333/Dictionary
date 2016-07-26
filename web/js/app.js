@@ -95,12 +95,37 @@ $('#html1').jstree({
     }
 }).on('loaded.jstree', function() {
 	$('#html1').jstree('open_all');
-	pollServerForChanges();
+	// pollServerForChanges();
 }).on('refresh.jstree', function() {
 	$('#html1').jstree('open_all');
 });
 
+$('#reset-tree').on('click', function (e) {
+	$.ajax({
+		method: "POST",
+		url: "/tree/reset",
+		dataType: 'json'
+	}).done(function( data ) {
+		var tree = $("#html1").jstree(true);
+		tree.refresh(true);
+	}).fail(function() {
+		console.log("failed reset");
+	});
+});
 
+$('#async-off').on('click', function (e) {
+	$(this).toggleClass('hidden');
+	$('#async-on').toggleClass('hidden');
+	pollServerForChanges();
+});
+
+$('#async-on').on('click', function (e) {
+	$(this).toggleClass('hidden');
+	$('#async-off').toggleClass('hidden');
+	clearTimeout(timer);
+});
+
+var timer;
 function pollServerForChanges() {
 	
 	var list = sortListById($("#html1").jstree(true).get_json('#', { 'flat': true }));
@@ -118,11 +143,7 @@ function pollServerForChanges() {
 			$('#html1').jstree(true).refresh(true);
 		}
 		
-		var begin 	= new Date('07/24/2016');
-		var end 	= new Date('07/31/2016');
-		
-		if(begin < Date.now() && Date.now() < end)
-			setTimeout(pollServerForChanges, 2000);
+		timer = setTimeout(pollServerForChanges, 2000);
 		
 	}).fail(function() {
 		// fail
