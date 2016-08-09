@@ -27,6 +27,11 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
     <div class="wrap">
         <?php
+            if (!Yii::$app->user->isGuest) {
+                $access = ['label' => 'Logout', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']]; 
+            } else {
+                $access = ['label' => 'Login', 'url' => ['/site/login']];
+            }
             NavBar::begin([
                 'brandLabel' => HTML::img('/images/T3S.png'),
                 'brandUrl' => Yii::$app->homeUrl,
@@ -45,8 +50,10 @@ AppAsset::register($this);
                             ['label' => 'Dictionary',   'url' => ['/site/dictionary']],
                             ['label' => 'Scheduler',    'url' => ['/scheduler']],
                             ['label' => 'jsTree',       'url' => ['/site/jstree']],
+                            ['label' => 'Goals',        'url' => ['/goal']],
                         ] 
                     ],
+                    $access,
                 ],
             ]);
             NavBar::end();
