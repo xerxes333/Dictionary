@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php
             echo GridView::widget([
                 'dataProvider' => $milestones,
+                'summary' => false,
                 'columns' => [
                     'title',
                     // ['class' => 'yii\grid\ActionColumn'],
@@ -39,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php
             echo GridView::widget([
                 'dataProvider' => $log,
+                'summary' => false,
                 'columns' => [
                     'info',
                     [

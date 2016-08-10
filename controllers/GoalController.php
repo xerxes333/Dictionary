@@ -77,16 +77,12 @@ class GoalController extends Controller
         
         $milestones = new ArrayDataProvider([
             'allModels' => $model->getMilestones(),
-            'pagination' => [
-                'pageSize' => 100,
-            ],
+            'pagination' => false,
         ]);
         
         $log = new ArrayDataProvider([
             'allModels' => $model->glogs,
-            'pagination' => [
-                'pageSize' => 100,
-            ],
+            'pagination' => false,
         ]);
 
         return $this->render('view', [
