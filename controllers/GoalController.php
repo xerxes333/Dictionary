@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\data\ArrayDataProvider;
+use yii\data\ActiveDataProvider;
 
 /**
  * GoalController implements the CRUD actions for Goal model.
@@ -76,7 +77,7 @@ class GoalController extends Controller
         $model = $this->findModel($id);
         
         $milestones = new ArrayDataProvider([
-            'allModels' => $model->getMilestones(),
+            'allModels' => $model->getMilestones()->all(),
             'pagination' => false,
         ]);
         
@@ -97,12 +98,16 @@ class GoalController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($parentId = null)
     {
         $model = new Goal();
-
+        $model->parentId = $parentId;
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if($model->parentId != null)
+                return $this->redirect(['view', 'id' => $model->parentId]);
+            else
+                return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -119,15 +124,34 @@ class GoalController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        
+        $milestones = new ActiveDataProvider([
+            'query' => $model->getMilestones(),
+            'pagination' => false,
+        ]);
+        
+        // $dataProvider = new ActiveDataProvider([
+            // 'query' => $query,
+        // ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'milestones' => $milestones,
             ]);
         }
     }
+    
+    // public function actionCreateMilestone($id)
+    // {
+        // $model = $this->findModel($id);
+//         
+        // return $this->render('update', [
+            // 'model' => $model,
+        // ]);
+    // }
 
     /**
      * Deletes an existing Goal model.

@@ -81,7 +81,7 @@ class Goal extends ActiveRecord
      */
     public function getMilestones()
     {
-        return self::find()->where(['parentId'=>$this->id])->all();
+        return self::find()->where(['parentId'=>$this->id]);
     }
     
     /**

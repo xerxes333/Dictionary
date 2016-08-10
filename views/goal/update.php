@@ -1,11 +1,16 @@
 <?php
 
 use yii\helpers\Html;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Goal */
 
-$this->title = 'Update Goal: ' . $model->title;
+if($model->parentId == null)
+    $this->title = 'Update Goal: ' . $model->title;
+else
+    $this->title = 'Update Milestone: ' . $model->title;
+ 
 $this->params['breadcrumbs'][] = ['label' => 'Goals', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
@@ -18,13 +23,20 @@ $this->params['breadcrumbs'][] = 'Update';
         'model' => $model,
     ]) ?>
     
+    <?php //var_dump($milestones); ?>
     
     <h2>Milestones</h2>
+    <?= GridView::widget([
+        'dataProvider' => $milestones,
+        'summary' => false,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'title',
+            'deadline',
+            ['class' => 'yii\grid\ActionColumn', 'template'=>'{update}{delete}'],
+        ],
+    ]); ?>
     
-    <?= Html::ul($model->getMilestones(), ['item' => function($milestone, $index) {
-        return Html::tag('li',$milestone->title);
-    }]) ?>
-    
-    <?= Html::a('Add Milestone', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a('Add Milestone', ['create', 'parentId' => $model->id], ['class' => 'btn btn-primary']) ?>
 
 </div>

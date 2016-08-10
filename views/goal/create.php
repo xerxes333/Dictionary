@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Goal */
 
-$this->title = 'Create Goal';
+$this->title = 'Create '. (($model->parentId != null)? 'Milestone' : 'Goal');
 $this->params['breadcrumbs'][] = ['label' => 'Goals', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
