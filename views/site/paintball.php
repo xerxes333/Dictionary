@@ -42,8 +42,8 @@ $this->title = 'Triple 3 Studios';
             <?php endforeach; ?>
             
         </div>
-        <div class="col-md-8" id="Video">
-            <div class="affix">
+        <div class="col-md-8">
+            <div class="affix" id="Video">
                 <iframe 
                 id="ls_embed_1474044710" 
                 name ="foo_player"
