@@ -16,6 +16,22 @@ $this->title = 'Triple 3 Studios';
 <div class="site-index">
     <div class="row">        
         <div class="col-md-4" id="Events">
+            
+            <h3>Impact Matches</h3>
+            <ul>
+            <?php foreach ($data as $group): ?>
+                <?php foreach ($group->episodes as $ep): ?>
+                    <?php if( stripos($ep->title, 'impact') !== false && stripos($group->title, '2016') !== false): ?>
+                        <li>
+                        <a class="episode_link" href="#" media_id="<?php echo $ep->media_id; ?>" media_title="<?php echo $ep->title; ?>">
+                            <?php echo $group->title . " - " .  $ep->title; ?>
+                        </a>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+            </ul>
+            
             <?php foreach ($data as $group): ?>
                 <h3><?php echo $group->title; ?></h3>
                 
@@ -27,15 +43,17 @@ $this->title = 'Triple 3 Studios';
             
         </div>
         <div class="col-md-8" id="Video">
-
-            <iframe 
-            id="ls_embed_1458262099" 
-            src="//livestream.com/accounts/1614555/events/5009942/player?width=960&height=540&autoPlay=true&mute=false" 
-            width="960" 
-            height="540" 
-            frameborder="0" 
-            scrolling="no">
-            </iframe> 
+            <div class="affix">
+                <iframe 
+                id="ls_embed_1474044710" 
+                name ="foo_player"
+                src="//livestream.com/accounts/1614555/events/5077429/videos/135888936/player?width=960&height=540&autoPlay=true&mute=false" 
+                width="960" 
+                height="540" 
+                frameborder="0" 
+                scrolling="no">
+                </iframe>
+            </div>    
             
         </div>
     </div>
