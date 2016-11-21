@@ -5,6 +5,7 @@ use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 $this->title = 'Triple 3 Studios';
+
 ?>
 
 <style type="text/css">
@@ -25,13 +26,21 @@ $this->title = 'Triple 3 Studios';
 
 <div class="site-index">
     <div class="row">        
-        <div class="col-md-6">
-            <? echo HTML::a(HTML::img("@web/images/ridenhour_screenshot.jpg"), "http://voteridenhour.com" , ["target" => "_new"]) . " "; ?>
-        </div>
-        <div class="col-md-6">
-            Election website for Mecklenburg County Commisioner Matthew Ridenhour.
-            
+        <div class="col-sm-12 col-works-info">
+            <h2>Here are some things I have made</h2>
         </div>
     </div>
-    
+    <hr>
+    <? foreach ($works as $work): ?>
+        <div class="row">        
+            <div class="col-sm-4 col-works-img">
+                <? echo HTML::a(HTML::img("@web/images/works/{$work['img']}"), $work['link'] , ["target" => "_new"]) . " "; ?>
+            </div>
+            <div class="col-sm-8 col-works-desc">
+                <? echo $work['desc']; ?>
+            </div>
+        </div>
+        <hr>
+    <? endforeach; ?>
+
 </div>

@@ -168,3 +168,15 @@ div.results-success{
 .panel-dc > .panel-body > ul,ol{
 	padding-left: 10px;
 }
+
+.col-works-img{
+	text-align: center;
+}
+
+.col-works-desc{
+	padding-top: 20px;
+}
+
+.col-works-info{
+	text-align: center;
+}

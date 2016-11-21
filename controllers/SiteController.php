@@ -7,6 +7,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
+
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\DictionaryForm;
@@ -14,6 +15,8 @@ use app\models\Dictionary;
 use app\models\WiwShift;
 use app\models\WiwUser;
 use app\models\WiwApiCall;
+use app\models\Works;
+
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
@@ -77,8 +80,10 @@ class SiteController extends Controller
     
     public function actionWorks()
     {
+        $works = new Works();
+        
         return $this->render('works',[
-            // 'arr' => $arr,
+            'works' => $works->works,
         ]);
     }
     
