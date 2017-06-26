@@ -27,7 +27,9 @@ class Works extends Model
                 The game normally uses pen &amp; paper to track your guild through numerous play sessions so I decided it would be better to have a companion app. 
                 I am writing the API with Node.js, MongoDB, and Express and once I complete the API I will create the frontend using React.
                 <br><br>
-                NOTE: I do not leave this server running so if you want to check it out you will have to contact me and I can spin up the server instance.',
+                NOTE: I do not leave this server running so if you want to check it out you will have to contact me and I can spin up the server instance.
+                <br><br>
+                <a href="https://node-api-xerxes333.c9users.io:8081">Frontend Link</a>',
         ],
         [
             'name' => 'Payment Portal',
