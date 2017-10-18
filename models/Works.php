@@ -22,14 +22,10 @@ class Works extends Model
         [
             'name' => 'AQ Node API',
             'img' => 'AQNode_screenshot.jpg',
-            'link' => 'https://node-api-xerxes333.c9users.io/api/help',
+            'link' => 'http://aqcampaignmanager.com',
             'desc' => 'Guild Manager app for the Arcadia Quest boardgame. 
                 The game normally uses pen &amp; paper to track your guild through numerous play sessions so I decided it would be better to have a companion app. 
-                I am writing the API with Node.js, MongoDB, and Express and once I complete the API I will create the frontend using React.
-                <br><br>
-                NOTE: I do not leave this server running so if you want to check it out you will have to contact me and I can spin up the server instance.
-                <br><br>
-                <a href="https://node-api-xerxes333.c9users.io:8081">Frontend Link</a>',
+                The backend API is written with Node.js, MongoDB, and Express.  The frontend is React and Redux.',
         ],
         [
             'name' => 'Payment Portal',

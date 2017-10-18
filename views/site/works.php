@@ -28,6 +28,7 @@ $this->title = 'Triple 3 Studios';
     <div class="row">        
         <div class="col-sm-12 col-works-info">
             <h2>Here are some things I have made</h2>
+            <h4>(click on the image to view)</h4>
         </div>
     </div>
     <hr>
